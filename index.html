@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狼人殺社內手冊 ｜ 規則、角色與板型指南</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        wolf: {
+                            dark: '#090d16',
+                            card: '#111827',
+                            border: '#1f293d',
+                            red: '#e11d48',
+                            redDark: '#9f1239',
+                            gold: '#fbbf24',
+                            amber: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #090d16;
+            color: #f1f5f9;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #090d16; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-600 selection:text-white relative overflow-x-hidden">
+
+    <!-- Atmospheric Background Glows -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-rose-950/25 rounded-full blur-[140px]"></div>
+        <div class="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-indigo-950/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-10 -right-40 w-[600px] h-[600px] bg-red-950/20 rounded-full blur-[150px]"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#090d16]/90 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo & Title -->
+                <a href="#home" onclick="switchTab('home')" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-red-900 flex items-center justify-center shadow-lg shadow-rose-950/60 border border-rose-500/30 group-hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.32.22.63.37.93.9 1.8 2.74 3.03 4.88 3.03 1.05 0 2.03-.31 2.85-.84.28 2.04 1.77 3.73 4.41-1.5 1.34-3.48 2.19-5.04 2.19zm6.6-3.83c-1.42-.64-2.45-1.95-2.58-3.53.94-.48 1.68-1.3 2.08-2.3.49.88 1.25 1.58 2.18 1.98-.32 1.48-1.11 2.76-2.18 3.65l.5.2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl font-black tracking-wider text-white">狼人殺</span>
+                            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-600/40 text-rose-300">社內手冊</span>
+                        </div>
+                        <p class="text-xs text-slate-400 font-medium">角色 · 板子 · 社內規則大全</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Tabs -->
+                <nav class="hidden md:flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
+                    <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        首頁
+                    </button>
+                    <button onclick="switchTab('rules')" id="tab-btn-rules" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        規則介紹
+                    </button>
+                    <button onclick="switchTab('roles')" id="tab-btn-roles" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        角色介紹
+                    </button>
+                    <button onclick="switchTab('boards')" id="tab-btn-boards" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        版型介紹
+                    </button>
+                    <button onclick="switchTab('terms')" id="tab-btn-terms" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                        術語介紹
+                    </button>
+                    <button onclick="switchTab('others')" id="tab-btn-others" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                        其他
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-[#0c1220]/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 bg-rose-600/90 text-white">首頁</button>
+            <button onclick="switchTab('rules'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">規則介紹 (社內規則)</button>
+            <button onclick="switchTab('roles'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">角色介紹</button>
+            <button onclick="switchTab('boards'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">版型介紹</button>
+            <button onclick="switchTab('terms'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">術語介紹</button>
+            <button onclick="switchTab('others'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">其他</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 z-10">
+
+        <!-- ============================================================= -->
+        <!-- TAB 0: 首頁 (Home - 還原參考網站視覺與入口) -->
+        <!-- ============================================================= -->
+        <div id="tab-home" class="tab-pane block space-y-12">
+            
+            <!-- Hero Banner Section -->
+            <div class="relative rounded-3xl overflow-hidden border border-rose-900/40 bg-gradient-to-b from-rose-950/40 via-slate-900/90 to-slate-900/95 p-8 sm:p-16 text-center shadow-2xl backdrop-blur-md">
+                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-600/15 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl mx-auto relative z-10 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-950/70 border border-rose-600/50 text-rose-300 text-xs font-semibold tracking-widest uppercase">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                        Night Falls · Close Your Eyes
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-wider drop-shadow-md">
+                        天黑請閉眼
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed sm:leading-loose">
+                        在謊言與真相交織的村莊裡，誰是潛伏在暗處的狼人？<br class="hidden sm:inline">
+                        誰又是引領村民走向光明的神職？<br>
+                        準備好你的邏輯與口才，這是一場沒有硝煙的戰爭。
+                    </p>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+                        <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-rose-900/40 hover:scale-105 transition duration-200 flex items-center gap-2">
+                            <span>閱讀社內規則</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                        <button onclick="switchTab('roles')" class="px-6 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 font-bold text-sm sm:text-base border border-slate-700 hover:scale-105 transition duration-200">
+                            瀏覽角色圖鑑
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features / Navigation Cards Grid -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-2.5 h-6 bg-rose-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-white tracking-wide">社團手冊導覽</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1: 規則介紹 -->
+                    <div onclick="switchTab('rules')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">社內規則</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                                發言時長、警長競選與歸票、狼人自爆吞警徽、死後技能與拍刀判定標準。
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-rose-400 mt-4">查看規則 →</span>
+                    </div>
+
+                    <!-- Card 2: 角色介紹 -->
+                    <div onclick="switchTab('roles')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">角色介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                                深入了解嗜血的邪惡陣營、守護村莊的好人神職與第三方陣營之獨特技能。
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 mt-4">查看角色 →</span>
+                    </div>
+
+                    <!-- Card 3: 版型介紹 -->
+                    <div onclick="switchTab('boards')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">版型介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                                適合不同人數的經典遊戲配置（6~12人局），提供上帝視角流程與進階打法。
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 mt-4">查看版型 →</span>
+                    </div>
+
+                    <!-- Card 4: 術語介紹 -->
+                    <div onclick="switchTab('terms')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">術語介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                                金水、銀水、查殺、反水、深水等面殺黑話字典，助你快速聽懂老手邏輯發言。
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-purple-400 mt-4">查看術語 →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- TAB 1: 規則介紹 (社內規則 - 圖片完整內容) -->
+        <!-- ============================================================= -->
+        <div id="tab-rules" class="tab-pane hidden space-y-8">
+            <!-- Header Hero -->
+            <div class="relative rounded-3xl overflow-hidden border border-rose-900/30 bg-gradient-to-b from-rose-950/30 via-slate-900/80 to-slate-900/90 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-900/40 border border-rose-600/40 text-rose-300 text-xs font-semibold mb-3">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                        Official Rules
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                        狼人殺<span class="text-rose-500">社內規則</span>
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        本社團標準發言時長、警長競選與歸票、狼人自爆、死後與白天技能發動規範，以及加速局拍刀判定流程。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 角色規則 -->
+            <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">角色規則</h2>
+                </div>
+                <div class="mt-4 text-slate-200 text-base leading-relaxed">
+                    角色技能與判定跟隨 Line 官方帳號：<a href="https://line.me/R/ti/p/@wolfbot" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:text-rose-300 font-semibold underline underline-offset-4 decoration-rose-500/50">狼人殺大百科</a>
+                </div>
+            </section>
+
+            <!-- 遊戲進行規程 -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 pt-2">
+                    <div class="w-2.5 h-6 bg-rose-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-white">遊戲進行</h2>
+                </div>
+
+                <!-- 1. 發言規則 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-blue-400 font-bold">#</span> 發言規則
+                    </h3>
+                    <div class="bg-slate-950/60 rounded-xl p-4 border border-slate-800/80 text-slate-200 space-y-1.5 text-sm sm:text-base">
+                        <p>每人每輪發言時長為 <span class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 font-bold border border-blue-800">90 秒</span>，每人每局有 <span class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 font-bold border border-rose-800">兩次機會加時 30 秒</span>。</p>
+                    </div>
+                </div>
+
+                <!-- 2. 警長規則 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-amber-400 font-bold">#</span> 警長規則
+                    </h3>
+                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>第一天白天公布死訊前，進行警長競選，所有玩家皆可選擇上警，警上玩家可隨時退水（也可在發言結束後的退水環節退水），警下玩家可對警上玩家投票（退水玩家視為無法投票），若僅剩一人在警上則自動當選警長，否則高票者當選，若存在平票，則需進行 PK 發言，PK 台下玩家皆可對 PK 台上玩家投票，最高票者當選，否則警徽流失，若所有玩家上警，僅能以退水到剩一人的方式獲得警徽。</p>
+                        <div class="p-3.5 rounded-lg bg-amber-950/30 border border-amber-900/40 text-amber-200">
+                            當選警長者可獲得 <strong>1.5 票歸票權</strong>，在單死當天，警長可選擇從死左或死右開始發言，否則以警左或警右開始發言，在所有人發言完畢後，警長可以歸票，<strong>若歸票一人，警長可維持 1.5 票，否則變為 1 票</strong>。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 自爆規則 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-rose-400 font-bold">#</span> 自爆規則
+                    </h3>
+                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>若拿到的狼人牌可自爆，可在警長階段以及白天階段的任意時間自爆，直接進入天黑，無須翻牌且沒有遺言，自爆的狼人可選擇在夜晚點刀後離場，若警上階段被女巫灑毒的狼人自爆仍可自爆成功，若狼人在警上階段自爆，天亮後直接進入退水環節，若此時又有狼人自爆，則警徽流失（稱為<strong>雙爆吞警徽</strong>）。</p>
+                    </div>
+                </div>
+
+                <!-- 4. 日間技能規則 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-purple-400 font-bold">#</span> 日間技能規則
+                    </h3>
+                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>死後發動技能的角色（如：獵人）要發動技能<strong class="text-rose-300 underline underline-offset-2">需自行告知上帝，上帝不會主動提醒</strong>。</p>
+                        <p>白天發言階段的技能依角色技能發動時機發動（如：騎士可在白天發言階段隨時發動技能）。</p>
+                    </div>
+                </div>
+
+                <!-- 5. 拍刀規則 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-red-500 font-bold">#</span> 拍刀規則
+                    </h3>
+                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <p>拍刀可視為加速版爆刀，夜晚見面的狼人可在白天或夜晚狼人階段隨時提出拍刀，若白天階段僅一位狼人選擇拍刀，且該玩家可以自爆，則視為該玩家自爆。拍刀提出後，見面的狼人可直接討論，若有不見面的狼人在場，需先點出其號碼才能參與討論。</p>
+                        <div class="p-3.5 rounded-lg bg-rose-950/30 border border-rose-900/40 text-slate-200">
+                            拍刀時，<strong>神職技能視為全數發動正確</strong>（如：守衛全守中、女巫必毒狼等），計算最終刀數，若最終刀數不足，則好人勝利，若刀數充足，則狼人討論刀型並選擇最終號碼，若選中之號碼可達成勝利條件且好人無其他輪次技能可用，則狼人勝利。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- TAB 2: 角色介紹 (預留空頁面) -->
+        <!-- ============================================================= -->
+        <div id="tab-roles" class="tab-pane hidden space-y-6">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">角色介紹</h2>
+                <p class="text-slate-400 text-sm mb-4">即將收錄各方陣營之技能與精選打法。</p>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+            </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- TAB 3: 版型介紹 (預留空頁面) -->
+        <!-- ============================================================= -->
+        <div id="tab-boards" class="tab-pane hidden space-y-6">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">版型介紹</h2>
+                <p class="text-slate-400 text-sm mb-4">即將收錄各人數經典配置與遊戲流程。</p>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+            </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- TAB 4: 術語介紹 (預留空頁面) -->
+        <!-- ============================================================= -->
+        <div id="tab-terms" class="tab-pane hidden space-y-6">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">術語介紹</h2>
+                <p class="text-slate-400 text-sm mb-4">即將收錄金水、銀水、查殺等黑話字典。</p>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+            </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- TAB 5: 其他 (預留空頁面) -->
+        <!-- ============================================================= -->
+        <div id="tab-others" class="tab-pane hidden space-y-6">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
+                <h2 class="text-2xl font-bold text-white mb-2">其他</h2>
+                <p class="text-slate-400 text-sm mb-4">即將收錄社團公告與活動資訊。</p>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-[#070b12] py-6 z-10 text-center text-xs text-slate-500">
+        狼人殺社團內部手冊 · Ready for GitHub Pages
+    </footer>
+
+    <!-- Interactive Navigation Script -->
+    <script>
+        const tabs = ['home', 'rules', 'roles', 'boards', 'terms', 'others'];
+        function switchTab(tabId) {
+            tabs.forEach(id => {
+                const pane = document.getElementById(`tab-${id}`);
+                const btn = document.getElementById(`tab-btn-${id}`);
+                if (id === tabId) {
+                    pane.classList.remove('hidden');
+                    pane.classList.add('block');
+                    if (btn) btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30";
+                } else {
+                    pane.classList.add('hidden');
+                    pane.classList.remove('block');
+                    if (btn) btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+                }
+            });
+            if (history.pushState) history.pushState(null, null, `#${tabId}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (tabs.includes(hash)) switchTab(hash);
+            else switchTab('home');
+        });
+    </script>
+</body>
+</html>
