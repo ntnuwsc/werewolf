@@ -13,13 +13,10 @@
                 extend: {
                     colors: {
                         wolf: {
-                            dark: '#090d16',
+                            dark: '#0b0f19',
                             card: '#111827',
-                            border: '#1f293d',
+                            border: '#1e293b',
                             red: '#e11d48',
-                            redDark: '#9f1239',
-                            gold: '#fbbf24',
-                            amber: '#d97706',
                         }
                     }
                 }
@@ -27,34 +24,32 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #090d16;
+            background-color: #0b0f19;
             color: #f1f5f9;
         }
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #090d16; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-rose-600 selection:text-white relative overflow-x-hidden">
 
-    <!-- Atmospheric Background Glows -->
+    <!-- Background Subtle Glow -->
     <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-rose-950/25 rounded-full blur-[140px]"></div>
-        <div class="absolute top-1/3 -left-40 w-[500px] h-[500px] bg-indigo-950/20 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-10 -right-40 w-[600px] h-[600px] bg-red-950/20 rounded-full blur-[150px]"></div>
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-rose-950/20 rounded-full blur-[140px]"></div>
     </div>
 
     <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#090d16]/90 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0b0f19]/90 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 sm:h-20">
-                <!-- Logo & Title -->
-                <a href="#home" onclick="switchTab('home')" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-red-900 flex items-center justify-center shadow-lg shadow-rose-950/60 border border-rose-500/30 group-hover:scale-105 transition-transform">
+                <!-- Logo & Brand -->
+                <button onclick="switchTab('home')" class="flex items-center gap-3 text-left focus:outline-none group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-red-900 flex items-center justify-center shadow-lg shadow-rose-950/50 border border-rose-500/30 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.32.22.63.37.93.9 1.8 2.74 3.03 4.88 3.03 1.05 0 2.03-.31 2.85-.84.28 2.04 1.77 3.73 4.41-1.5 1.34-3.48 2.19-5.04 2.19zm6.6-3.83c-1.42-.64-2.45-1.95-2.58-3.53.94-.48 1.68-1.3 2.08-2.3.49.88 1.25 1.58 2.18 1.98-.32 1.48-1.11 2.76-2.18 3.65l.5.2z"/>
                         </svg>
@@ -64,75 +59,51 @@
                             <span class="text-xl font-black tracking-wider text-white">狼人殺</span>
                             <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-600/40 text-rose-300">社內手冊</span>
                         </div>
-                        <p class="text-xs text-slate-400 font-medium">角色 · 板子 · 術語 · 社內規則大全</p>
+                        <p class="text-xs text-slate-400 font-medium">規則 · 角色 · 板型 · 術語</p>
                     </div>
-                </a>
+                </button>
 
-                <!-- Desktop Navigation Tabs -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
-                    <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        首頁
-                    </button>
-                    <button onclick="switchTab('rules')" id="tab-btn-rules" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        規則介紹
-                    </button>
-                    <button onclick="switchTab('roles')" id="tab-btn-roles" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        角色介紹
-                    </button>
-                    <button onclick="switchTab('boards')" id="tab-btn-boards" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                        版型介紹
-                    </button>
-                    <button onclick="switchTab('terms')" id="tab-btn-terms" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                        術語介紹
-                    </button>
-                    <button onclick="switchTab('others')" id="tab-btn-others" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                        其他
-                    </button>
+                    <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30">首頁</button>
+                    <button onclick="switchTab('rules')" id="tab-btn-rules" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">規則介紹</button>
+                    <button onclick="switchTab('roles')" id="tab-btn-roles" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">角色介紹</button>
+                    <button onclick="switchTab('boards')" id="tab-btn-boards" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">版型介紹</button>
+                    <button onclick="switchTab('terms')" id="tab-btn-terms" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">術語介紹</button>
+                    <button onclick="switchTab('others')" id="tab-btn-others" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">其他</button>
                 </nav>
 
-                <!-- Mobile Menu Hamburger Button -->
+                <!-- Mobile Hamburger Button -->
                 <div class="flex md:hidden">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                    <button onclick="toggleMobileMenu()" type="button" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Navigation Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-[#0c1220]/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-2">
-            <button onclick="switchTab('home'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 bg-rose-600/90 text-white">首頁</button>
-            <button onclick="switchTab('rules'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">規則介紹 (社內規則)</button>
-            <button onclick="switchTab('roles'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">角色介紹</button>
-            <button onclick="switchTab('boards'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">版型介紹</button>
-            <button onclick="switchTab('terms'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">術語介紹</button>
-            <button onclick="switchTab('others'); toggleMobileMenu()" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800/80">其他</button>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-[#0e1424] px-4 pt-3 pb-5 space-y-2">
+            <button onclick="switchTab('home')" id="m-tab-btn-home" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 bg-rose-600 text-white">首頁</button>
+            <button onclick="switchTab('rules')" id="m-tab-btn-rules" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">規則介紹 (社內規則)</button>
+            <button onclick="switchTab('roles')" id="m-tab-btn-roles" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">角色介紹</button>
+            <button onclick="switchTab('boards')" id="m-tab-btn-boards" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">版型介紹</button>
+            <button onclick="switchTab('terms')" id="m-tab-btn-terms" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">術語介紹</button>
+            <button onclick="switchTab('others')" id="m-tab-btn-others" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">其他</button>
         </div>
     </header>
 
     <!-- Main Content Container -->
     <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 z-10">
 
-        <!-- ============================================================= -->
-        <!-- TAB 0: 首頁 (Home) -->
-        <!-- ============================================================= -->
-        <div id="tab-home" class="tab-pane block space-y-12">
-            <div class="relative rounded-3xl overflow-hidden border border-rose-900/40 bg-gradient-to-b from-rose-950/40 via-slate-900/90 to-slate-900/95 p-8 sm:p-16 text-center shadow-2xl backdrop-blur-md">
-                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-600/15 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="max-w-3xl mx-auto relative z-10 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-950/70 border border-rose-600/50 text-rose-300 text-xs font-semibold tracking-widest uppercase">
-                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+        <!-- TAB 0: 首頁 -->
+        <div id="tab-home" class="tab-pane block space-y-10">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-rose-950/30 via-slate-900/90 to-slate-900/95 p-8 sm:p-14 text-center shadow-2xl backdrop-blur-md">
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold uppercase tracking-wider">
                         Night Falls · Close Your Eyes
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-wider drop-shadow-md">
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-wider">
                         天黑請閉眼
                     </h1>
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed sm:leading-loose">
@@ -140,12 +111,11 @@
                         誰又是引領村民走向光明的神職？<br>
                         準備好你的邏輯與口才，這是一場沒有硝煙的戰爭。
                     </p>
-                    <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
-                        <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-rose-900/40 hover:scale-105 transition duration-200 flex items-center gap-2">
-                            <span>閱讀社內規則</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+                        <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg transition">
+                            閱讀社內規則
                         </button>
-                        <button onclick="switchTab('terms')" class="px-6 py-3 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-200 font-bold text-sm sm:text-base border border-purple-700/60 hover:scale-105 transition duration-200">
+                        <button onclick="switchTab('terms')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm sm:text-base border border-slate-700 transition">
                             查詢術語字典
                         </button>
                     </div>
@@ -153,79 +123,61 @@
             </div>
 
             <!-- Features Cards -->
-            <div class="space-y-6">
+            <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-2.5 h-6 bg-rose-600 rounded-full"></div>
-                    <h2 class="text-2xl font-bold text-white tracking-wide">社團手冊導覽</h2>
+                    <div class="w-2 h-5 bg-rose-600 rounded-full"></div>
+                    <h2 class="text-xl font-bold text-white tracking-wide">社團手冊導覽</h2>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div onclick="switchTab('rules')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div onclick="switchTab('rules')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 mb-4 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">社內規則</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                            <h3 class="text-lg font-bold text-white mb-2">社內規則</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
                                 發言時長、警長競選與歸票、狼人自爆吞警徽、死後技能與拍刀判定標準。
                             </p>
                         </div>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-rose-400 mt-4">查看規則 →</span>
+                        <span class="text-xs font-semibold text-rose-400 mt-4">查看規則 →</span>
                     </div>
 
-                    <div onclick="switchTab('roles')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                    <div onclick="switchTab('roles')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">角色介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                            <h3 class="text-lg font-bold text-white mb-2">角色介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
                                 深入了解嗜血的邪惡陣營、守護村莊的好人神職與第三方陣營之獨特技能。
                             </p>
                         </div>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 mt-4">查看角色 →</span>
+                        <span class="text-xs font-semibold text-slate-400 mt-4">查看角色 →</span>
                     </div>
 
-                    <div onclick="switchTab('boards')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-rose-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                    <div onclick="switchTab('boards')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">版型介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                                適合不同人數的經典遊戲配置（6~12人局），提供上帝視角流程與進階打法。
+                            <h3 class="text-lg font-bold text-white mb-2">版型介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                適合不同人數的經典遊戲配置（6~12人局），提供上帝視角主持流程。
                             </p>
                         </div>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 mt-4">查看版型 →</span>
+                        <span class="text-xs font-semibold text-slate-400 mt-4">查看版型 →</span>
                     </div>
 
-                    <div onclick="switchTab('terms')" class="group cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur hover:border-purple-500/50 hover:bg-slate-900/90 hover:-translate-y-1 transition duration-200 flex flex-col justify-between">
+                    <div onclick="switchTab('terms')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">術語介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                                收錄金水、銀水、查殺、倒鉤、奶穿等 160+ 面殺詞典，支援即時搜尋！
+                            <h3 class="text-lg font-bold text-white mb-2">術語介紹</h3>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                收錄金水、銀水、查殺、倒鉤、奶穿等 160+ 面殺詞典，支援即時關鍵字搜尋。
                             </p>
                         </div>
-                        <span class="inline-flex items-center gap-1 text-xs font-semibold text-purple-400 mt-4">查看術語 →</span>
+                        <span class="text-xs font-semibold text-rose-400 mt-4">查看術語 →</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- TAB 1: 規則介紹 (社內規則) -->
-        <!-- ============================================================= -->
+        <!-- TAB 1: 規則介紹 -->
         <div id="tab-rules" class="tab-pane hidden space-y-8">
-            <div class="relative rounded-3xl overflow-hidden border border-rose-900/30 bg-gradient-to-b from-rose-950/30 via-slate-900/80 to-slate-900/90 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-900/40 border border-rose-600/40 text-rose-300 text-xs font-semibold mb-3">
-                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-                        Official Rules
-                    </div>
                     <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                        狼人殺<span class="text-rose-500">社內規則</span>
+                        狼人殺社內規則
                     </h1>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
                         本社團標準發言時長、警長競選與歸票、狼人自爆、死後與白天技能發動規範，以及加速局拍刀判定流程。
@@ -233,868 +185,281 @@
                 </div>
             </div>
 
+            <!-- 角色規則 -->
             <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                <div class="flex items-center gap-3 pb-4 border-b border-slate-800">
-                    <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    </div>
-                    <h2 class="text-xl font-bold text-white">角色規則</h2>
-                </div>
-                <div class="mt-4 text-slate-200 text-base leading-relaxed">
+                <h2 class="text-xl font-bold text-white pb-3 border-b border-slate-800 mb-4">角色規則</h2>
+                <div class="text-slate-200 text-base leading-relaxed">
                     角色技能與判定跟隨 Line 官方帳號：<a href="https://line.me/R/ti/p/@231pfgbz" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:text-rose-300 font-semibold underline underline-offset-4 decoration-rose-500/50">狼人殺大百科</a>
                 </div>
             </section>
 
             <div class="space-y-6">
-                <div class="flex items-center gap-3 pt-2">
-                    <div class="w-2.5 h-6 bg-rose-600 rounded-full"></div>
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-5 bg-rose-600 rounded-full"></div>
                     <h2 class="text-2xl font-bold text-white">遊戲進行</h2>
                 </div>
 
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-blue-400 font-bold">#</span> 發言規則
-                    </h3>
-                    <div class="bg-slate-950/60 rounded-xl p-4 border border-slate-800/80 text-slate-200 space-y-1.5 text-sm sm:text-base">
-                        <p>每人每輪發言時長為 <span class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 font-bold border border-blue-800">90 秒</span>，每人每局有 <span class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 font-bold border border-rose-800">兩次機會加時 30 秒</span>。</p>
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">發言規則</h3>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 border border-slate-800">
+                        每人每輪發言時長為 <strong>90 秒</strong>，每人每局有 <strong>兩次機會加時 30 秒</strong>。
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-amber-400 font-bold">#</span> 警長規則
-                    </h3>
-                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">警長規則</h3>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-3">
                         <p>第一天白天公布死訊前，進行警長競選，所有玩家皆可選擇上警，警上玩家可隨時退水（也可在發言結束後的退水環節退水），警下玩家可對警上玩家投票（退水玩家視為無法投票），若僅剩一人在警上則自動當選警長，否則高票者當選，若存在平票，則需進行 PK 發言，PK 台下玩家皆可對 PK 台上玩家投票，最高票者當選，否則警徽流失，若所有玩家上警，僅能以退水到剩一人的方式獲得警徽。</p>
-                        <div class="p-3.5 rounded-lg bg-amber-950/30 border border-amber-900/40 text-amber-200">
-                            當選警長者可獲得 <strong>1.5 票歸票權</strong>，在單死當天，警長可選擇從死左或死右開始發言，否則以警左或警右開始發言，在所有人發言完畢後，警長可以歸票，<strong>若歸票一人，警長可維持 1.5 票，否則變為 1 票</strong>。
-                        </div>
+                        <p class="border-t border-slate-800/80 pt-3">當選警長者可獲得 <strong>1.5 票歸票權</strong>，在單死當天，警長可選擇從死左或死右開始發言，否則以警左或警右開始發言，在所有人發言完畢後，警長可以歸票，<strong>若歸票一人，警長可維持 1.5 票，否則變為 1 票</strong>。</p>
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-rose-400 font-bold">#</span> 自爆規則
-                    </h3>
-                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-                        <p>若拿到的狼人牌可自爆，可在警長階段以及白天階段的任意時間自爆，直接進入天黑，無須翻牌且沒有遺言，自爆的狼人可選擇在夜晚點刀後離場，若警上階段被女巫灑毒的狼人自爆仍可自爆成功，若狼人在警上階段自爆，天亮後直接進入退水環節，若此時又有狼人自爆，則警徽流失（稱為<strong>雙爆吞警徽</strong>）。</p>
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">自爆規則</h3>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800">
+                        若拿到的狼人牌可自爆，可在警長階段以及白天階段的任意時間自爆，直接進入天黑，無須翻牌且沒有遺言，自爆的狼人可選擇在夜晚點刀後離場，若警上階段被女巫灑毒的狼人自爆仍可自爆成功，若狼人在警上階段自爆，天亮後直接進入退水環節，若此時又有狼人自爆，則警徽流失（稱為<strong>雙爆吞警徽</strong>）。
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-purple-400 font-bold">#</span> 日間技能規則
-                    </h3>
-                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed">
-                        <p>死後發動技能的角色（如：獵人）要發動技能<strong class="text-rose-300 underline underline-offset-2">需自行告知上帝，上帝不會主動提醒</strong>。</p>
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">日間技能規則</h3>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-2">
+                        <p>死後發動技能的角色（如：獵人）要發動技能<strong>需自行告知上帝，上帝不會主動提醒</strong>。</p>
                         <p>白天發言階段的技能依角色技能發動時機發動（如：騎士可在白天發言階段隨時發動技能）。</p>
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
-                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-red-500 font-bold">#</span> 拍刀規則
-                    </h3>
-                    <div class="bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800/80 space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
+                    <h3 class="text-lg font-bold text-white">拍刀規則</h3>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-3">
                         <p>拍刀可視為加速版爆刀，夜晚見面的狼人可在白天或夜晚狼人階段隨時提出拍刀，若白天階段僅一位狼人選擇拍刀，且該玩家可以自爆，則視為該玩家自爆。拍刀提出後，見面的狼人可直接討論，若有不見面的狼人在場，需先點出其號碼才能參與討論。</p>
-                        <div class="p-3.5 rounded-lg bg-rose-950/30 border border-rose-900/40 text-slate-200">
-                            拍刀時，<strong>神職技能視為全數發動正確</strong>（如：守衛全守中、女巫必毒狼等），計算最終刀數，若最終刀數不足，則好人勝利，若刀數充足，則狼人討論刀型並選擇最終號碼，若選中之號碼可達成勝利條件且好人無其他輪次技能可用，則狼人勝利。
-                        </div>
+                        <p class="border-t border-slate-800/80 pt-3">拍刀時，<strong>神職技能視為全數發動正確</strong>（如：守衛全守中、女巫必毒狼等），計算最終刀數，若最終刀數不足，則好人勝利，若刀數充足，則狼人討論刀型並選擇最終號碼，若選中之號碼可達成勝利條件且好人無其他輪次技能可用，則狼人勝利。</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- TAB 2: 角色介紹 (預留空頁面) -->
-        <!-- ============================================================= -->
+        <!-- TAB 2: 角色介紹 -->
         <div id="tab-roles" class="tab-pane hidden space-y-6">
             <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
                 <h2 class="text-2xl font-bold text-white mb-2">角色介紹</h2>
                 <p class="text-slate-400 text-sm mb-4">即將收錄各方陣營之技能與精選打法。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
             </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- TAB 3: 版型介紹 (預留空頁面) -->
-        <!-- ============================================================= -->
+        <!-- TAB 3: 版型介紹 -->
         <div id="tab-boards" class="tab-pane hidden space-y-6">
             <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
                 <h2 class="text-2xl font-bold text-white mb-2">版型介紹</h2>
                 <p class="text-slate-400 text-sm mb-4">即將收錄各人數經典配置與遊戲流程。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
             </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- TAB 4: 術語介紹 (術語字典 - PDF 完整內容) -->
-        <!-- ============================================================= -->
+        <!-- TAB 4: 術語介紹 -->
         <div id="tab-terms" class="tab-pane hidden space-y-8">
-            <!-- Header Banner -->
-            <div class="relative rounded-3xl overflow-hidden border border-purple-900/40 bg-gradient-to-b from-purple-950/30 via-slate-900/80 to-slate-900/90 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="max-w-3xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-900/50 border border-purple-600/40 text-purple-300 text-xs font-semibold mb-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
-                        Glossary & Slang
-                    </div>
                     <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                        狼人殺<span class="text-purple-400">術語大全</span>
+                        狼人殺術語大全
                     </h1>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        收錄超過 160 個常見面殺專業黑話、身分定義、盤邏輯用語與戰術策略，支援即時關鍵字搜尋與分類過濾。
+                        收錄所有常見面殺專業用語、身分定義、發言手法與對局術語。每個術語獨立條列，支援即時關鍵字搜尋。
                     </p>
                 </div>
             </div>
 
-            <!-- Search & Filter Controls -->
-            <div class="sticky top-20 z-40 bg-[#090d16]/95 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl space-y-3">
-                <!-- Search Box -->
+            <!-- Instant Search Box -->
+            <div class="sticky top-20 z-40 bg-[#0b0f19]/95 backdrop-blur-md py-3 rounded-2xl">
                 <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 1114 0z"></path></svg>
                     </span>
-                    <input id="term-search" oninput="filterTerms()" type="text" placeholder="快速搜尋術語或定義（例如：倒鉤、奶穿、金水、反水、自爆）..." class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-sm sm:text-base">
-                </div>
-
-                <!-- Category Pills -->
-                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
-                    <button onclick="setTermCategory('all')" class="term-cat-btn active px-3.5 py-1.5 rounded-full font-semibold bg-purple-600 text-white transition shrink-0" data-cat="all">全部術語 (<span id="count-all">160+</span>)</button>
-                    <button onclick="setTermCategory('cat1')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat1">一、牌型與身分</button>
-                    <button onclick="setTermCategory('cat2')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat2">二、空間與順序</button>
-                    <button onclick="setTermCategory('cat3')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat3">三、發言與邏輯</button>
-                    <button onclick="setTermCategory('cat4')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat4">四、戰術與博弈</button>
-                    <button onclick="setTermCategory('cat5')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat5">五、流程與技能</button>
-                    <button onclick="setTermCategory('cat6')" class="term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0" data-cat="cat6">六、局況與規範</button>
+                    <input id="term-search" oninput="filterTerms()" type="text" placeholder="輸入關鍵字快速搜尋術語或定義（例如：奶穿、金水、倒鉤、表水、自爆）..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 text-sm sm:text-base shadow-lg">
                 </div>
             </div>
 
-            <!-- Empty Search Result Notice -->
+            <!-- No Results Message -->
             <div id="no-search-result" class="hidden text-center py-12 text-slate-400">
                 <p class="text-base font-semibold">找不到符合關鍵字的術語</p>
-                <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他詞彙或切換分類標籤</p>
+                <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他詞彙</p>
             </div>
 
-            <!-- Terms Grid -->
-            <div id="terms-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                <!-- 一、角色牌型與身分定義 -->
-                <!-- 基礎牌型 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">底牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">身份牌、角色牌。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">蛋牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">平民。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">槍牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">獵人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">盾牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">守衛。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">白神</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">白痴。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">強神</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">一般指女巫、獵人等能夠用技能自證身份的神職。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">大狼 / 大哥</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">特殊狼人，通常指擁有特殊能力或特殊技能的狼人，可能依角色形象而改稱為「大姐」。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">匪 / 匪徒</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">老闆</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">黑市商人、奇蹟商人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">閉眼玩家</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">夜晚不行動、不獲取夜間資訊的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">白牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">基礎牌型</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">某玩家 A 視角中 B 為白牌，表示未在夜間行動中獲取關於 B 的資訊；通常稱不與狼隊見面的玩家為狼人眼中的白牌。</p>
-                </div>
-
-                <!-- 身分定義 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-amber-400 text-base">金水</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被預言家查驗的好人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">查殺</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被預言家查驗的狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-slate-200 text-base">銀水</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被女巫用解藥解救的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-emerald-400 text-base">銅水</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被守衛守護成功的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">雙金水</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">同時被預言家與悍跳狼發金水的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">雙查殺</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">同時被預言家與悍跳狼發查殺的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">反向金</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被悍跳狼發查殺的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">摸頭金</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">指收到悍跳狼金水的好人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">狼狼金</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">身分定義</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">指狼人跳預言家給自己的狼隊友發金水。</p>
-                </div>
-
-                <!-- 陣營標籤 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-emerald-400 text-base">鐵好</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/50">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">確定的好人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">鐵狼</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">確定的狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">金鋼狼</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">身份被坐實到近乎是鐵好人的狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">深水狼 / 淺水狼</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>深水狼：</strong>偽裝程度很高的狼人。<br><strong>淺水狼：</strong>偽裝程度一般的狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">墊子 / 匪配</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>墊子：</strong>打墊飛的狼人。<br><strong>匪配：</strong>狼隊友。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">暴民</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">陣營標籤</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">透過發言或者某些行為擾亂局勢的平民。</p>
-                </div>
-
-                <!-- 特殊身分 (鏈子) -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-pink-400 text-base">鏈子 / 進鏈</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-800/50">特殊身分</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">被丘比特的技能選中，成為情侶的兩名玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-pink-300 text-base">好人鏈 / 狼狼鏈</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-800/50">特殊身分</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>好人鏈：</strong>情侶雙方都是好人。<br><strong>狼狼鏈：</strong>情侶雙方都是狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat1">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-pink-400 text-base">人狼鏈 / 髒鏈子</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-800/50">特殊身分</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">情侶雙方為一個好人與一個狼人，丘比特版型中會形成第三方獨立陣營。</p>
-                </div>
-
-                <!-- 二、空間座標與發言順序 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat2">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">首置位 / 末置位</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言順位</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>首置位：</strong>一輪中第一個發言的玩家。<br><strong>末置位/沉底位/歸票位：</strong>一輪中最後一個發言的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat2">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">前置位 / 後置位</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言順位</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>前置位/高置位：</strong>發言靠前或在某人之前發言的玩家。<br><strong>後置位：</strong>發言靠後或在某人之後發言的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat2">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-amber-300 text-base">警上 / 警下</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">場態空間</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>警上：</strong>參與警長競選的玩家。<br><strong>警下：</strong>未參與警長競選的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat2">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">焦點位 / 外置位</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">場態空間</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>焦點位：</strong>當前討論度、可疑程度較高的玩家。<br><strong>外置位：</strong>當前非焦點位、未被定義身分的玩家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat2">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">原始起跳位</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">場態空間</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">最初被狼隊安排悍跳，但實際未起跳的狼人。</p>
-                </div>
-
-                <!-- 三、發言狀態與邏輯評估 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">表水 / 划水</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>表水：</strong>清晰表達自己的邏輯和行為原因，盡力說清身份以洗脫嫌疑。<br><strong>划水：</strong>發言沒有提供任何有價值的資訊或觀點。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">聊爆 / 跟風</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>聊爆：</strong>狼人在發言中無意暴露了自己的身份。<br><strong>跟風：</strong>玩家發言時單純模仿之前玩家的觀點。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">踩 / 丟水包</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>踩：</strong>指出其他玩家發言問題或認為其身分不好。<br><strong>丟水包：</strong>發言時主動向懷疑對象施加壓力的行為。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">遞話 / 洗頭</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>遞話：</strong>暗中向場上特定玩家傳遞資訊的行為。<br><strong>洗頭：</strong>洗腦，以強邏輯或話術說服其他玩家站邊。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">心路歷程 / 言行合一</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>心路歷程：</strong>詳細交代做決策思維演變過程。<br><strong>言行合一：</strong>白天發言立場與實際投票行為完全吻合。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">篡改發言 / 更新發言</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">發言手法</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>篡改發言：</strong>故意歪曲或誇大他人原話以做低其身分。<br><strong>更新發言：</strong>進入新一輪時的最新發言內容。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">好人面 / 匪面 / 爆點</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">身分評估</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>好人面：</strong>像好人的特徵。<br><strong>匪面/狼面/爆點：</strong>指發言或行為中像狼人或聊爆的地方。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">做高 / 做低 / 做好</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">身分評估</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>做高：</strong>讓某玩家身分更像好人。<br><strong>做低：</strong>讓其身分更像狼人。<br><strong>做好：</strong>指該玩家極高機率是好人或行為極有誠意。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">聽感 / 聽殺 / 聽保</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">身分評估</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>聽感：</strong>發言聽起來的邏輯正度與情緒狀態。<br><strong>聽殺：</strong>聽起來肯定是狼人。<br><strong>聽保/聽正：</strong>聽起來肯定是好人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">正邏輯 / 反邏輯</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">邏輯與視角</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>正邏輯（第一層）：</strong>最直覺、表面的邏輯。<br><strong>反邏輯（第二層）：</strong>較深層、反套路與非直覺的邏輯。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">鐵邏輯 / 偽邏輯</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">邏輯與視角</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>鐵邏輯：</strong>絕對成立、無可辯駁的正確邏輯。<br><strong>偽邏輯：</strong>站不住腳、存在漏洞或不一定正確的推論。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">狼坑 / 點狼 / 開匪</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">邏輯與視角</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>狼坑：</strong>主觀推算出的所有狼人席位。<br><strong>點狼：</strong>指出認為是狼人的玩家。<br><strong>開匪/開狼：</strong>指某些特定玩家之中存在狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">賣視角 / 賣白</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">邏輯與視角</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>賣視角：</strong>發言無意透露了只有特定身分才會知曉的夜間資訊。<br><strong>賣白：</strong>發言中賣出了某人為白牌（自己未知）的視角。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat3">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">抿牌 / 盤雙邊 / 容錯</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">邏輯與視角</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>抿牌：</strong>透過神情或微動作推測身分。<br><strong>盤雙邊：</strong>同時站在兩位預言家角度盤其狼坑。<br><strong>容錯：</strong>誤判可能，或好人能承受的失誤刀數空間。</p>
-                </div>
-
-                <!-- 四、陣營戰術與主動博弈 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">起跳 / 對跳 / 悍跳</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">起跳策略</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>起跳：</strong>聲稱自己是某個角色。<br><strong>對跳：</strong>多名玩家聲稱同一神職。<br><strong>悍跳：</strong>狼人冒充神職身分。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">羅悍跳 / 搏殺</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">起跳策略</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>羅悍跳：</strong>多個狼人共同冒充同一個神職。<br><strong>搏殺：</strong>狼人悍跳給後置位疑似真預言家的玩家發查殺。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">穿衣服 / 脫衣服</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">偽裝策略</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>穿衣服：</strong>宣稱自己是某個非真實身分。<br><strong>脫衣服：</strong>主動承認並放棄之前聲稱的虛假身分。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">詐身份 / 原地起跳</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">策略博弈</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>詐身份：</strong>透過虛假發言獲取別人的真實反應。<br><strong>原地起跳：</strong>警上接到查殺後立即起跳預言家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">代跳 / 擋刀 / 拉杆</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">戰術策略</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>代跳/擋刀：</strong>民冒充神職吸引狼刀。<br><strong>拉杆：</strong>狼人悍跳通靈師時直接報出其他好人真實具體身分。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">站邊 / 衝鋒 / 倒鉤</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">團隊博弈</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>站邊：</strong>選擇相信其中一位預言家。<br><strong>衝鋒：</strong>站邊悍跳狼的狼人。<br><strong>倒鉤：</strong>站邊真預言家的狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">陰陽倒鉤 / 墊飛</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">高級戰術</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">狼人站邊真預言家但故意發言極差（通常悍跳神職），讓好人誤以為他是衝鋒狼，進而站錯邊做低真預言家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">旋風倒鉤 / 螺旋墊飛</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">高級戰術</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">狼人站邊悍跳狼，但發言故意讓場上以為是在打陰陽倒鉤/墊飛，藉此誘使好人反而站邊悍跳狼。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">狼踩狼 / 騙藥</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">團隊配合</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>狼踩狼：</strong>狼隊友互打做高彼此身分。<br><strong>騙藥：</strong>使用自刀等套路讓女巫交出解藥。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">打板子 / 安排工作 / 壓榨</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">團隊操作</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>打板子：</strong>配合操作。<br><strong>安排工作：</strong>規範夜間神職技能目標。<br><strong>壓榨身份：</strong>壓縮空間迫使玩家拍身分。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-amber-300 text-base">反水 / 反水立警</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">身分宣告</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>反水：</strong>不承認給自己發金水的預言家身分。<br><strong>反水立警：</strong>接金水後直接起跳預言家競選警長。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">認出 / 認狼 / 孤狼宣言</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">身分宣告</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>認出：</strong>同意放逐自己。<br><strong>認狼：</strong>直接宣稱是狼。<br><strong>孤狼宣言：</strong>最後一狼明牌提示第三方在場以求生存。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat4">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">正視角</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">身分宣告</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">真假預言家難辨時，有資訊的神職主動起跳明晰局勢。</p>
-                </div>
-
-                <!-- 五、流程推進、投票機制與技能結算 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-amber-300 text-base">警徽流</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800/50">警徽機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">預言家交代後續驗人順序，透過決定發言順序或死後移交警徽傳遞查驗資訊。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">退水流 / 退狼流 / 前剛後放</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">退水策略</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>退水流：</strong>聽信預言家後退水。<br><strong>退狼流：</strong>聽出狼人後退水。<br><strong>前剛後放：</strong>信先跳的不退水，信後跳的則退水。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">撕警徽 / 吞警徽</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">警徽機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>撕警徽：</strong>出局不移交警徽使其流失，或公投出局警長。<br><strong>吞警徽：</strong>狼人警上自爆（通常雙爆）導致警徽流失。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">歸票 / 號票 / 衝票</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>歸票：</strong>警長末置位號召投票。<br><strong>號票：</strong>號召大家齊投某人。<br><strong>衝票：</strong>多名狼人合力綁票投出某人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">分票 / 壓手 (棄票)</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>分票：</strong>票型分散未跟隨歸票。<br><strong>壓手/棄票：</strong>放逐環節選擇棄權不舉手投票。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">平票 PK / 拉 PK</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>平票PK：</strong>同票玩家額外進行一輪對決發言。<br><strong>拉PK：</strong>號召票型投成平票對決。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">票型 / 票出 / 順抬</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>票型：</strong>各玩家投票分佈情況。<br><strong>票出：</strong>高票放逐出局。<br><strong>順抬/順推：</strong>按既定順序依序公投出局。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">外飛 / 扛推 / 扛出</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>外飛：</strong>票出查驗與警徽流之外的玩家。<br><strong>扛推：</strong>好人被公投放逐。<br><strong>扛出：</strong>無明確目標時放逐不影響輪次者。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">驗一砸一</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">投票機制</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">在兩名可疑程度類似的玩家中，查驗一人同時放逐另一人。</p>
-                </div>
-
-                <!-- 技能發動與夜間結算 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">帶走 / 刀口 / 倒牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">結算狀態</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>帶走：</strong>技能使人出局。<br><strong>刀口：</strong>夜間被狼擊殺者。<br><strong>倒牌：</strong>出局。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-emerald-400 text-base">平安夜 / 平安日</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/50">結算狀態</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>平安夜：</strong>前一晚無人倒牌。<br><strong>平安日：</strong>白天無人被放逐出局。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">空守 / 自守 / 奶穿</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">好人技能</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>空守/自守：</strong>守衛不守或守自己。<br><strong>奶穿（同守同救）：</strong>同晚守衛守護且女巫用解藥，導致目標出局。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">斷劍 / 撒毒 / 撈</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">好人技能</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>斷劍：</strong>騎士決鬥好人自己死。<br><strong>撒毒/潑：</strong>女巫使用毒藥。<br><strong>撈：</strong>女巫使用解藥救人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">盲毒 (天毒) / 彈死 / 自證</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800/50">好人技能</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>盲毒/天毒：</strong>女巫首夜盲毒。<br><strong>彈死：</strong>商人給狼幸運兒自己死。<br><strong>自證：</strong>用技能證明真實身分。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">空刀 / 首刀 / 自刀 / 自爆</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">狼人技能</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>空刀/首刀：</strong>狼隊不殺或首夜刀人。<br><strong>自刀：</strong>狼夜間刀自己騙藥。<br><strong>自爆：</strong>白天中斷發言直接進黑夜。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">入狼隊 / 反傷 / 連 / 埋</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">特殊技能</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>入/不入狼隊：</strong>夜間是否參與討論。<br><strong>反傷：</strong>惡靈反彈。<br><strong>連：</strong>丘比特連情侶。<br><strong>埋：</strong>盜賊捨棄底牌。</p>
-                </div>
-
-                <!-- 輪次與勝負判定 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">輪次 / 刀推領先</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">勝負判定</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>輪次：</strong>殺戮與推人步調。<br><strong>狼刀領先：</strong>狼先屠邊完成。<br><strong>警推領先：</strong>好人先放逐全部狼人。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">狼刀在先 / 綁票 / 交牌</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">勝負判定</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>狼刀在先：</strong>狼刀優先結算，達標即勝。<br><strong>綁票：</strong>狼票過半勝負已分。<br><strong>交牌：</strong>認輸放棄對局。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat5">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">屠邊 / 屠城 / 屠神 / 屠民</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">獲勝方式</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>屠邊：</strong>殺光所有神職或所有平民之一即勝。<br><strong>屠城：</strong>殺光所有好人。<br><strong>屠神/屠民：</strong>殺光特定單邊身分。</p>
-                </div>
-
-                <!-- 六、板子局況與遊戲規範 -->
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat6">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">慫狼局 / 單邊預</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">局況模式</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>慫狼局：</strong>沒有狼人悍跳預言家的對局。<br><strong>單邊預：</strong>全場僅有一人聲稱是預言家。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat6">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-white text-base">生推局 / 團隊</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">局況模式</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>生推局：</strong>資訊過少、純靠發言推盤的局。<br><strong>團隊：</strong>具有相同目的或站邊立場的群體。</p>
-                </div>
-                <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-purple-500/40 transition" data-cat="cat6">
-                    <div class="flex items-center justify-between gap-2 mb-1.5">
-                        <span class="font-bold text-rose-400 text-base">場外 / 貼臉</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800/50">競技邊界</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed"><strong>場外：</strong>非遊戲進行中的內容（如看掛相、聽聲響）。<br><strong>貼臉：</strong>情緒化發言、發誓賭咒等破壞競技禮儀的行為。</p>
-                </div>
-
-            </div>
+            <!-- Dynamic Terms Container -->
+            <div id="terms-container" class="space-y-10"></div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- TAB 5: 其他 (預留空頁面) -->
-        <!-- ============================================================= -->
+        <!-- TAB 5: 其他 -->
         <div id="tab-others" class="tab-pane hidden space-y-6">
             <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
                 <h2 class="text-2xl font-bold text-white mb-2">其他</h2>
                 <p class="text-slate-400 text-sm mb-4">即將收錄社團公告與活動資訊。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-amber-400">內容暫時留空 · 敬請期待</span>
+                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
             </div>
         </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/80 bg-[#070b12] py-6 z-10 text-center text-xs text-slate-500">
+    <footer class="border-t border-slate-800/80 bg-[#080d17] py-6 z-10 text-center text-xs text-slate-500">
         狼人殺社團內部手冊 · Ready for GitHub Pages
     </footer>
 
-    <!-- Interactive Script -->
+    <!-- Complete Terms Data & Safe Interaction Script -->
     <script>
-    const tabs = ['home', 'rules', 'roles', 'boards', 'terms', 'others'];
-    let currentTermCategory = 'all';
+        var termsData = [
+            {"category": "一、角色牌型與身分定義", "sub": "基礎牌型", "items": [["底牌", "身份牌、角色牌。"], ["蛋牌", "平民。"], ["槍牌", "獵人。"], ["盾牌", "守衛。"], ["白神", "白痴。"], ["強神", "一般指女巫、獵人等能夠用技能自證身份的神。"], ["大狼 / 大哥", "特殊狼人，通常指擁有特殊能力或者特殊技能的狼人，可能依角色形象而改稱為「大姐」。"], ["匪 / 匪徒", "狼人。"], ["老闆", "黑市商人、奇蹟商人。"], ["閉眼玩家", "夜晚不行動、不獲取夜間資訊的玩家。"], ["白牌", "某玩家A的視角中，B為白牌，表示未在夜間行動中獲取關於B的資訊，通常會稱不與狼隊見面的玩家為狼人眼中的白牌。"]]},
+            {"category": "一、角色牌型與身分定義", "sub": "身分定義", "items": [["金水", "被預言家查驗的好人。"], ["查殺", "被預言家查驗的狼人。"], ["銀水", "被女巫用解藥解救的玩家。"], ["銅水", "被守衛守護成功的玩家。"], ["雙金水", "同時被預言家與悍跳狼發金水的玩家。"], ["雙查殺", "同時被預言家與悍跳狼發查殺的玩家。"], ["反向金", "被悍跳狼發查殺的玩家。"], ["摸頭金", "指收到悍跳狼金水的好人。"], ["狼狼金", "指狼人跳預言家給自己的狼隊友發金水。"]]},
+            {"category": "一、角色牌型與身分定義", "sub": "陣營標籤", "items": [["鐵好", "確定的好人。"], ["鐵狼", "確定的狼人。"], ["金鋼狼", "身份被坐實到近乎是鐵好人的狼人。"], ["深水狼", "偽裝程度很高的狼人。"], ["淺水狼", "偽裝程度一般的狼人。"], ["墊子", "打墊飛的狼人。"], ["匪配", "狼隊友。"], ["暴民", "透過發言或者某些行為擾亂局勢的平民。"]]},
+            {"category": "一、角色牌型與身分定義", "sub": "特殊身分", "items": [["鏈子 / 進鏈", "被丘比特的技能選中，成為情侶的兩名玩家。"], ["好人鏈", "情侶雙方都是好人。"], ["狼狼鏈", "情侶雙方都是狼人。"], ["人狼鏈 / 髒鏈子", "情侶雙方為一個好人與一個狼人，丘比特版型中會形成第三方。"]]},
+            {"category": "二、空間座標與發言順序", "sub": "發言順位", "items": [["首置位", "一輪中第一個發言的玩家。"], ["前置位 / 先置位 / 高置位", "發言靠前的玩家，或指在某人之前發言的玩家。"], ["後置位", "發言靠後的玩家，或指在某人之後發言的玩家。"], ["末置位 / 沉底位 / 歸票位", "一輪中最後一個發言的玩家。"]]},
+            {"category": "二、空間座標與發言順序", "sub": "場態空間", "items": [["警上", "參與警長競選的玩家。"], ["警下", "未參與警長競選的玩家。"], ["焦點位", "當前討論度、可疑程度較高的玩家。"], ["外置位", "當前非焦點位、未被定義身分的玩家。"], ["原始起跳位", "最初被安排悍跳，但未起跳的狼人。"]]},
+            {"category": "三、發言狀態與邏輯評估", "sub": "發言表現與手法", "items": [["表水", "發言時清晰表達自己的邏輯和行為原因，盡力說清自己的身份、洗脫嫌疑的行為。"], ["踩", "發言時指出其他玩家的發言內容存在問題，或認為其他玩家身分不好的行為。"], ["划水", "發言時沒有提供有價值的資訊或觀點。"], ["聊爆", "狼人在發言中暴露了自己的身份。"], ["跟風", "指玩家在發言時，模仿之前玩家的觀點。"], ["遞話", "玩家發言時，暗中向場上另外一部分玩家傳遞資訊的行為。"], ["丟水包", "玩家在自己發言時，向自己懷疑的對象施加壓力的一種行為。"], ["洗頭", "洗腦。"], ["更新發言", "新一輪的發言。"], ["心路歷程", "在發言中詳細交代自己做決策的思維演變過程。"], ["言行合一", "白天的發言立場與實際投票行為完全吻合。"], ["篡改發言", "故意歪曲或誇大他人原話的意思，藉此做低他人身分。"]]},
+            {"category": "三、發言狀態與邏輯評估", "sub": "身分評估", "items": [["好人面", "指某位玩家像好人的地方。"], ["爆點 / 匪面 / 狼面", "指某位玩家像狼人的地方。"], ["做好", "指某玩家高機率是好人，或者某玩家的一段發言、一個行為很有好人面。"], ["做高", "指某段發言或者某個行為，讓玩家的身份更像好人。"], ["做低", "指某段發言或者某個行為，讓玩家的身份更像狼人。"], ["身份作好", "指某個玩家像好人。"], ["聽感", "發言聽起來像好/壞身份或者有/無邏輯。"], ["聽殺", "指某個玩家的發言聽起來一定是狼人。"], ["聽保 / 聽正", "指某個玩家的發言聽起來一定是好人。"]]},
+            {"category": "三、發言狀態與邏輯評估", "sub": "邏輯與視角", "items": [["正邏輯 / 第一層邏輯", "最直覺、表面的邏輯。"], ["反邏輯 / 第二層邏輯", "較深層、非直覺的邏輯。"], ["鐵邏輯", "絕對正確的邏輯。"], ["偽邏輯", "不一定正確的邏輯。"], ["賣視角", "指發言中無意透露了某個身份才會知道的資訊。"], ["狼坑", "玩家主觀認為的所有狼人。"], ["點狼", "指出場上你認為的狼人。"], ["開匪 / 開狼", "指某些玩家之中存在狼人。"], ["抿牌 / 抿人 / 抿身份", "指通過看牌表情、發言和行為推斷某個玩家的身份。"], ["盤雙邊", "站在各預言家的角度，分別按照他們的查驗和邏輯來盤他們的狼坑。"], ["容錯", "可指盤狼坑時的誤判可能，或指對局中好人能承受的失誤空間。"], ["賣白", "指發言中賣出了某人為白牌的視角。"]]},
+            {"category": "四、陣營戰術與主動博弈", "sub": "偽裝與起跳策略", "items": [["跳 / 起跳 / 拍", "聲稱自己是某個角色。"], ["對跳", "多名玩家聲稱自己是某個相同的神職。"], ["悍跳", "狼人冒充某個神職。"], ["羅悍跳", "多個狼人冒充同一個神職。"], ["搏殺", "指狼人悍跳給後置位疑似真預言家的玩家發查殺的行為。"], ["原地起跳", "警上接到查殺的玩家，發言說自己是預言家。"], ["穿衣服", "聲稱自己是某個身份，通常並非真實身份。"], ["脫衣服", "放棄聲稱自己是之前穿的身份。"], ["詐身份", "透過某些操作試圖獲取別人的身份資訊的行為。"], ["代跳", "一般指平民偽裝自己是神職，騙狼人來擊殺自己，偶爾指神職偽裝自己是平民或其他神職。"], ["擋刀", "一般指平民偽裝有身份或者跳出神的身分吸引狼人擊殺自己。"], ["拉杆", "指狼人悍跳通靈師時，直接報出其他好人玩家具體好人身份的行為。"]]},
+            {"category": "四、陣營戰術與主動博弈", "sub": "團隊配合與倒鉤博弈", "items": [["站邊", "當有玩家對跳身份時，其他玩家選擇相信其中一方的行為。"], ["衝鋒", "站邊悍跳狼的狼人。"], ["倒鉤", "站邊真預言家的狼人。"], ["陰陽倒鉤 / 墊飛", "狼人站邊真預言家，但故意發言很差，讓場上玩家以為是打衝鋒的狼人，讓好人和真正的神職站錯邊，使真預言家身分變低，墊飛通常會選擇悍跳神職。"], ["旋風倒鉤 / 螺旋墊飛", "狼人站邊悍跳狼，但發言讓場上玩家以為是打陰陽倒鉤/墊飛的狼人，從而站邊悍跳狼，螺旋墊飛通常會選擇悍跳神職。"], ["狼踩狼", "攻擊自己的狼隊友牌來互做身份。"], ["騙藥", "使用方法套路讓女巫用錯解藥的行為，通常是自刀騙藥。"], ["打板子", "指玩家間打配合、打操作。"], ["安排工作", "通常指好人陣營安排夜晚神職使用技能的目標，也可以指狼人夜間溝通白天戰術的行為。"], ["壓榨身份", "透過報身分等方式強制壓縮場上身分空間，迫使玩家交身分。"]]},
+            {"category": "四、陣營戰術與主動博弈", "sub": "自我身分宣告", "items": [["反水", "指自稱預言家的玩家A表明另一名玩家B為金水，但是B不承認A的預言家身份，從而反對A的行為。"], ["反水立警", "預言家給一個玩家發金水，但金水卻跳預言家競選警長。"], ["認出", "認為自己可以被放逐出局。"], ["認狼", "玩家宣稱自己就是狼人。"], ["孤狼宣言", "作為場上最後一名狼人，表明自己身份並提示第三方仍然在場，以換取生存的行為。"], ["正視角", "指分不清預言家時，有資訊的神職主動跳出來明晰場上局勢的行為。"]]},
+            {"category": "五、流程推進、投票機制與技能結算", "sub": "警長競選與警徽機制", "items": [["警長", "擁有1.5票歸票權與發言順序決定權的玩家。"], ["上警", "指參與警長競選的行為。"], ["退水", "玩家在競選警長階段退出競選的行為。"], ["退水流", "上警的非預言家玩家，可以在聽到信服的預言家後退水，表達自己的初步站邊。"], ["退狼流", "上警的非預言家玩家，可以在聽到認為的狼牌時退水。"], ["前剛後放", "非預言家玩家在上警階段的一種退水策略，如果警上有兩個玩家對跳預言家，相信先起跳的，則不退水，相信後起跳的，則退水。"], ["警徽流", "指預言家接下來驗人的順序，預言家攜帶警徽時，通過決定發言順序或者移交警徽來傳遞查驗信息。"], ["移交警徽", "警長出局時指定特定存活玩家接替警長職位。"], ["撕警徽", "指擁有警徽的玩家出局時不移交警徽，讓警徽流失，或是在放逐投票階段時放逐擁有警徽的玩家的行為。"], ["吞警徽", "狼人自爆導致警徽流失的行為，通常為兩隻狼人自爆(雙爆)。"]]},
+            {"category": "五、流程推進、投票機制與技能結算", "sub": "投票放逐機制", "items": [["歸票", "號召大家在放逐投票環節投票給某個玩家。"], ["號票", "號召大家一起投票某位玩家。"], ["衝票", "放逐投票時，多名狼人共同將票投給某位玩家的行為。"], ["分票", "指有些玩家沒有按照歸票來投票，或者各玩家意見不一，也可以指某位玩家歸票了多名玩家，或在某人歸票後又提出了新的歸票目標。"], ["壓手 / 棄票", "放逐投票階段選擇不投票。"], ["平票 PK", "在警長競選、放逐投票環節，獲得相同票數的兩個及以上玩家，將額外進行一輪對決發言。"], ["PK 台", "指平票對決發言的玩家。"], ["拉 PK", "號召大家在放逐投票環節在某些玩家中投票。"], ["票型", "投票的情況。"], ["票出", "指透過白天投票環節，將票數最多的玩家放逐出局。"], ["順抬 / 順推", "按順序將玩家投出局。"], ["外飛", "指在被查驗、在警徽流之外的玩家裡，投票某個玩家，讓其出局。"], ["扛推", "放逐投票階段放逐好人。"], ["扛出", "指在場面上沒有明確狼人時，放逐某個未確定是狼但出局後不影響輪次的玩家。"], ["驗一砸一", "通常指預言家在兩個可疑程度、身份範圍類似的玩家中，查驗一個放逐一個。"]]},
+            {"category": "五、流程推進、投票機制與技能結算", "sub": "技能發動與夜間結算 · 通用與結算狀態", "items": [["帶走", "有身份的牌發動技能使其他玩家出局。"], ["刀口", "被狼人擊殺的玩家。"], ["倒牌", "出局。"], ["平安夜", "前一晚無人出局。"], ["平安日", "白天無人被放逐出局。"]]},
+            {"category": "五、流程推進、投票機制與技能結算", "sub": "技能發動與夜間結算 · 好人技能", "items": [["空守", "守衛選擇不守護。"], ["自守", "守衛選擇守護自己。"], ["奶穿 / 同守同救", "同個夜晚，守衛守護被女巫解救的目標，造成該目標出局。"], ["斷劍", "騎士決鬥好人，造成騎士自己出局。"], ["撒毒 / 潑", "女巫使用毒藥。"], ["撈", "可指女巫使用解藥。"], ["盲毒 / 天毒", "指女巫在首夜不知道任何資訊的情況下，使用毒藥的行為。天毒通常指女巫未吃首刀時使用毒藥。"], ["彈死", "商人選擇狼人為幸運兒後，自己出局。"], ["自證", "指玩家能夠自己證明自己的身份。"]]},
+            {"category": "五、流程推進、技能結算", "sub": "技能發動與夜間結算 · 狼人與特殊技能", "items": [["空刀", "狼隊夜晚選擇不擊殺玩家。"], ["首刀", "狼隊在全局第一個擊殺的目標。"], ["自刀", "狼人在夜晚選擇擊殺自己。"], ["自爆", "白天發言階段時，狼人玩家可隨時選擇自爆，結束發言階段並直接進入天黑，部分大狼或在特殊狀況下無法自爆。"], ["入狼隊", "夜間參與狼人的討論和行動。"], ["不入狼隊", "夜間不參與狼人的討論和行動。"], ["反彈 / 反傷", "被好人陣營角色選為技能目標時，對方會出局。"], ["連", "丘比特選擇玩家成為情侶的行為。"], ["埋", "被盜賊捨棄的底牌。"]]},
+            {"category": "五、流程推進、投票機制與技能結算", "sub": "輪次與勝負判定", "items": [["輪次", "可指輪到某些玩家的次序，也可指後續進行狼刀或放逐投票順序。"], ["狼刀領先", "指狼人可以在好人放逐所有狼人前完成屠邊。"], ["警推領先", "指好人可以在狼人完成屠邊前放逐所有狼人。"], ["狼刀在先", "狼人的刀優先於其它讓狼人出局的技能，若狼人擊殺一名玩家後即達成勝利條件，則無須進行後續流程與結算。"], ["綁票", "指狼人陣營或第三方陣營的玩家票數已大於等於其他陣營，勝負已分。"], ["屠神", "讓所有神職出局。"], ["屠民", "讓所有平民出局。"], ["屠邊", "狼人讓村民、神職某一邊全部出局即獲勝。"], ["屠城", "狼人讓所有好人出局即獲勝。"], ["交牌", "指某一方陣營放棄遊戲，即認輸，通常為狼人選擇交牌。"]]},
+            {"category": "六、板子局況與遊戲規範", "sub": "局況模式", "items": [["慫狼局", "沒有狼人悍跳預言家的對局。"], ["單邊預", "指對局中只有一個玩家聲稱自己是預言家。"], ["生推局", "指場上沒資訊或資訊過少的對局。"], ["團隊", "用來代指某一個具有相同目的或認知的多名玩家，可以指好人、狼人團隊，也可以代指場上有多個預言家時，各預言家的支持者群體。"]]},
+            {"category": "六、板子局況與遊戲規範", "sub": "競技邊界與規則", "items": [["場外", "非遊戲進行中的資訊與內容。"], ["貼臉", "情緒化發言的行為，通常是賭咒發誓。"]]}
+        ];
 
-    function switchTab(tabId) {
-        tabs.forEach(id => {
-            const pane = document.getElementById('tab-' + id);
-            const btn = document.getElementById('tab-btn-' + id);
-            if (pane) {
-                if (id === tabId) {
-                    pane.classList.remove('hidden');
-                    pane.classList.add('block');
-                } else {
-                    pane.classList.add('hidden');
-                    pane.classList.remove('block');
+        function renderTerms() {
+            var container = document.getElementById('terms-container');
+            if (!container) return;
+            var html = '';
+            for (var c = 0; c < termsData.length; c++) {
+                var sec = termsData[c];
+                html += '<div class="term-group space-y-4">';
+                html += '  <div class="flex items-center gap-3 border-b border-slate-800 pb-2">';
+                html += '    <div class="w-2 h-5 bg-rose-600 rounded-full"></div>';
+                html += '    <h2 class="text-lg sm:text-xl font-bold text-white">' + sec.category + ' <span class="text-slate-400 font-normal text-sm">· ' + sec.sub + '</span></h2>';
+                html += '  </div>';
+                html += '  <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">';
+                for (var i = 0; i < sec.items.length; i++) {
+                    var item = sec.items[i];
+                    html += '    <div class="term-item rounded-xl border border-slate-800/90 bg-slate-900/60 p-4 hover:border-slate-700 transition">';
+                    html += '      <h3 class="font-bold text-white text-base mb-1.5">' + item[0] + '</h3>';
+                    html += '      <p class="text-slate-300 text-sm leading-relaxed">' + item[1] + '</p>';
+                    html += '    </div>';
+                }
+                html += '  </div>';
+                html += '</div>';
+            }
+            container.innerHTML = html;
+        }
+
+        var tabs = ['home', 'rules', 'roles', 'boards', 'terms', 'others'];
+
+        function switchTab(tabId) {
+            for (var i = 0; i < tabs.length; i++) {
+                var id = tabs[i];
+                var pane = document.getElementById('tab-' + id);
+                var btnDesktop = document.getElementById('tab-btn-' + id);
+                var btnMobile = document.getElementById('m-tab-btn-' + id);
+                var isCurrent = (id === tabId);
+
+                if (pane) {
+                    if (isCurrent) {
+                        pane.classList.remove('hidden');
+                        pane.classList.add('block');
+                    } else {
+                        pane.classList.add('hidden');
+                        pane.classList.remove('block');
+                    }
+                }
+
+                if (btnDesktop) {
+                    if (isCurrent) {
+                        btnDesktop.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30";
+                    } else {
+                        btnDesktop.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+                    }
+                }
+
+                if (btnMobile) {
+                    if (isCurrent) {
+                        btnMobile.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 bg-rose-600 text-white";
+                    } else {
+                        btnMobile.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800";
+                    }
                 }
             }
-            if (btn) {
-                if (id === tabId) {
-                    btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30";
+
+            var menu = document.getElementById('mobile-menu');
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+
+            try {
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '#' + tabId);
+                }
+            } catch (e) {}
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        function filterTerms() {
+            var searchInput = document.getElementById('term-search');
+            var query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            var items = document.querySelectorAll('.term-item');
+            var groups = document.querySelectorAll('.term-group');
+            var totalMatches = 0;
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var text = item.textContent.toLowerCase();
+                if (query === '' || text.indexOf(query) !== -1) {
+                    item.style.display = '';
+                    totalMatches++;
                 } else {
-                    btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+                    item.style.display = 'none';
                 }
             }
-        });
 
-        // 避免本機 file:/// 開啟時拋出安全性阻擋錯誤
-        try {
-            if (window.history && window.history.pushState) {
-                window.history.pushState(null, null, '#' + tabId);
+            for (var g = 0; g < groups.length; g++) {
+                var group = groups[g];
+                var groupItems = group.querySelectorAll('.term-item');
+                var hasVisible = false;
+                for (var j = 0; j < groupItems.length; j++) {
+                    if (groupItems[j].style.display !== 'none') {
+                        hasVisible = true;
+                        break;
+                    }
+                }
+                group.style.display = hasVisible ? '' : 'none';
             }
-        } catch (e) {
-            // 本機預覽環境忽略此錯誤
+
+            var noResult = document.getElementById('no-search-result');
+            if (noResult) {
+                noResult.className = totalMatches === 0 ? "block text-center py-12 text-slate-400" : "hidden";
+            }
         }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        if (menu) menu.classList.toggle('hidden');
-    }
-
-    function setTermCategory(cat) {
-        currentTermCategory = cat;
-        document.querySelectorAll('.term-cat-btn').forEach(btn => {
-            if (btn.dataset.cat === cat) {
-                btn.className = "term-cat-btn active px-3.5 py-1.5 rounded-full font-semibold bg-purple-600 text-white transition shrink-0";
+        window.addEventListener('DOMContentLoaded', function() {
+            renderTerms();
+            var hash = window.location.hash.replace('#', '');
+            if (tabs.indexOf(hash) !== -1) {
+                switchTab(hash);
             } else {
-                btn.className = "term-cat-btn px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:text-white transition shrink-0";
+                switchTab('home');
             }
         });
-        filterTerms();
-    }
-
-    function filterTerms() {
-        const query = (document.getElementById('term-search')?.value || '').toLowerCase().trim();
-        const items = document.querySelectorAll('.term-item');
-        let matchCount = 0;
-
-        items.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            const itemCat = item.dataset.cat;
-            const matchesSearch = query === '' || text.includes(query);
-            const matchesCat = currentTermCategory === 'all' || itemCat === currentTermCategory;
-
-            if (matchesSearch && matchesCat) {
-                item.style.display = '';
-                matchCount++;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-
-        const noResult = document.getElementById('no-search-result');
-        if (noResult) {
-            noResult.className = matchCount === 0 ? "block text-center py-12 text-slate-400" : "hidden";
-        }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        const countAll = document.getElementById('count-all');
-        if (countAll) {
-            countAll.textContent = document.querySelectorAll('.term-item').length;
-        }
-        const hash = window.location.hash.replace('#', '');
-        if (tabs.includes(hash)) {
-            switchTab(hash);
-        } else {
-            switchTab('home');
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
