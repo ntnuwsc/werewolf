@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>狼人殺社內手冊 ｜ 規則、角色與板型指南</title>
+    <title>狼人殺社內手冊 ｜ 規則、角色、術語與暗月聯賽</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -47,7 +47,7 @@
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0b0f19]/90 border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 sm:h-20">
                 <!-- Logo & Brand -->
                 <button onclick="switchTab('home')" class="flex items-center gap-3 text-left focus:outline-none group">
@@ -61,18 +61,19 @@
                             <span class="text-xl font-black tracking-wider text-white">狼人殺</span>
                             <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-600/40 text-rose-300">社內手冊</span>
                         </div>
-                        <p class="text-xs text-slate-400 font-medium">規則 · 角色 · 板型 · 術語</p>
+                        <p class="text-xs text-slate-400 font-medium">規則 · 角色 · 術語 · 暗月聯賽</p>
                     </div>
                 </button>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
-                    <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30">首頁</button>
-                    <button onclick="switchTab('rules')" id="tab-btn-rules" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">規則介紹</button>
-                    <button onclick="switchTab('roles')" id="tab-btn-roles" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">角色介紹</button>
-                    <button onclick="switchTab('boards')" id="tab-btn-boards" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">版型介紹</button>
-                    <button onclick="switchTab('terms')" id="tab-btn-terms" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">術語介紹</button>
-                    <button onclick="switchTab('others')" id="tab-btn-others" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">其他</button>
+                    <button onclick="switchTab('home')" id="tab-btn-home" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30">首頁</button>
+                    <button onclick="switchTab('rules')" id="tab-btn-rules" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">規則介紹</button>
+                    <button onclick="switchTab('roles')" id="tab-btn-roles" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">角色介紹</button>
+                    <button onclick="switchTab('boards')" id="tab-btn-boards" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">版型介紹</button>
+                    <button onclick="switchTab('terms')" id="tab-btn-terms" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">術語介紹</button>
+                    <button onclick="switchTab('league')" id="tab-btn-league" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-emerald-400 hover:text-white hover:bg-slate-800">🏆 暗月聯賽</button>
+                    <button onclick="switchTab('others')" id="tab-btn-others" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800">其他</button>
                 </nav>
 
                 <!-- Mobile Hamburger Button -->
@@ -91,12 +92,13 @@
             <button onclick="switchTab('roles')" id="m-tab-btn-roles" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">角色介紹</button>
             <button onclick="switchTab('boards')" id="m-tab-btn-boards" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">版型介紹</button>
             <button onclick="switchTab('terms')" id="m-tab-btn-terms" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">術語介紹</button>
+            <button onclick="switchTab('league')" id="m-tab-btn-league" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-emerald-400 hover:bg-slate-800">🏆 暗月聯賽 (積分與投票)</button>
             <button onclick="switchTab('others')" id="m-tab-btn-others" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">其他</button>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 z-10">
+    <main id="main-container" class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 z-10">
 
         <!-- TAB 0: 首頁 -->
         <div id="tab-home" class="tab-pane block space-y-10">
@@ -117,6 +119,9 @@
                         <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg transition">
                             閱讀社內規則
                         </button>
+                        <button onclick="switchTab('league')" class="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-sm sm:text-base shadow-lg transition">
+                            🏆 進入暗月聯賽
+                        </button>
                         <button onclick="switchTab('terms')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm sm:text-base border border-slate-700 transition">
                             查詢術語字典
                         </button>
@@ -128,9 +133,9 @@
             <div class="space-y-4">
                 <div class="flex items-center gap-3">
                     <div class="w-2 h-5 bg-rose-600 rounded-full"></div>
-                    <h2 class="text-xl font-bold text-white tracking-wide">社團手冊導覽</h2>
+                    <h2 class="text-xl font-bold text-white tracking-wide">社團手冊與聯賽導覽</h2>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     <div onclick="switchTab('rules')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">社內規則</h3>
@@ -170,6 +175,16 @@
                         </div>
                         <span class="text-xs font-semibold text-rose-400 mt-4">查看術語 →</span>
                     </div>
+
+                    <div onclick="switchTab('league')" class="cursor-pointer rounded-2xl border border-emerald-900/60 bg-emerald-950/20 p-5 hover:border-emerald-600 hover:bg-emerald-950/40 transition flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-emerald-300 mb-2">🏆 暗月聯賽</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                賽季總覽、即時積分排行榜、單場 MVP 線上投票與對局紀錄管理系統。
+                            </p>
+                        </div>
+                        <span class="text-xs font-semibold text-emerald-400 mt-4">進入聯賽系統 →</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,7 +202,6 @@
                 </div>
             </div>
 
-            <!-- 角色規則 -->
             <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
                 <h2 class="text-xl font-bold text-white pb-3 border-b border-slate-800 mb-4">角色規則</h2>
                 <div class="text-slate-200 text-base leading-relaxed">
@@ -272,9 +286,7 @@
                 </div>
             </div>
 
-            <!-- Sticky Filter & Search Control Panel -->
             <div class="sticky top-20 z-40 bg-[#0b0f19]/95 backdrop-blur-md py-3 rounded-2xl space-y-3">
-                <!-- Category Filter Buttons -->
                 <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs sm:text-sm no-scrollbar">
                     <button onclick="setTermCategory('all')" class="term-cat-btn active px-3.5 py-1.5 rounded-xl font-medium bg-rose-600 text-white transition shrink-0 shadow-sm" data-cat="all">全部</button>
                     <button onclick="setTermCategory('cat1')" class="term-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0" data-cat="cat1">一、角色牌型與身分</button>
@@ -285,7 +297,6 @@
                     <button onclick="setTermCategory('cat6')" class="term-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0" data-cat="cat6">六、板子局況與規範</button>
                 </div>
 
-                <!-- Search Input Box -->
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 1114 0z"></path></svg>
@@ -294,17 +305,32 @@
                 </div>
             </div>
 
-            <!-- No Results Message -->
             <div id="no-search-result" class="hidden text-center py-12 text-slate-400">
                 <p class="text-base font-semibold">找不到符合關鍵字的術語</p>
                 <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他詞彙或切換上方分類</p>
             </div>
 
-            <!-- Dynamic Terms Container -->
             <div id="terms-container" class="space-y-10"></div>
         </div>
 
-        <!-- TAB 5: 其他 -->
+        <!-- TAB 5: 暗月聯賽 (無縫嵌入區塊) -->
+        <div id="tab-league" class="tab-pane hidden space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-900/90 border border-slate-800 px-4 py-2.5 rounded-2xl">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-sm font-bold text-white">暗月聯賽 · 積分排行與對局管理系統</span>
+                </div>
+                <a href="league.html" target="_blank" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white transition flex items-center gap-1.5 shadow">
+                    <span>以獨立全螢幕開啟</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+            <div class="w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-[#101714]" style="height: calc(100vh - 160px); min-height: 720px;">
+                <iframe id="league-iframe" src="league.html" class="w-full h-full border-0" title="暗月聯賽積分系統"></iframe>
+            </div>
+        </div>
+
+        <!-- TAB 6: 其他 -->
         <div id="tab-others" class="tab-pane hidden space-y-6">
             <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
                 <h2 class="text-2xl font-bold text-white mb-2">其他</h2>
@@ -317,10 +343,9 @@
 
     <!-- Footer -->
     <footer class="border-t border-slate-800/80 bg-[#080d17] py-6 z-10 text-center text-xs text-slate-500">
-        狼人殺社團內部手冊 · Ready for GitHub Pages
+        狼人殺社團內部手冊 & 暗月聯賽 · Ready for GitHub Pages
     </footer>
 
-    <!-- Complete Terms Data & Safe Interaction Script -->
     <script>
         var termsData = [
             {"catId": "cat1", "category": "一、角色牌型與身分定義", "sub": "基礎牌型", "items": [["底牌", "身份牌、角色牌。"], ["蛋牌", "平民。"], ["槍牌", "獵人。"], ["盾牌", "守衛。"], ["白神", "白痴。"], ["強神", "一般指女巫、獵人等能夠用技能自證身份的神。"], ["大狼 / 大哥", "特殊狼人，通常指擁有特殊能力或者特殊技能的狼人，可能依角色形象而改稱為「大姐」。"], ["匪 / 匪徒", "狼人。"], ["老闆", "黑市商人、奇蹟商人。"], ["閉眼玩家", "夜晚不行動、不獲取夜間資訊的玩家。"], ["白牌", "某玩家A的視角中，B為白牌，表示未在夜間行動中獲取關於B的資訊，通常會稱不與狼隊見面的玩家為狼人眼中的白牌。"]]},
@@ -372,9 +397,18 @@
             container.innerHTML = html;
         }
 
-        var tabs = ['home', 'rules', 'roles', 'boards', 'terms', 'others'];
+        var tabs = ['home', 'rules', 'roles', 'boards', 'terms', 'league', 'others'];
 
         function switchTab(tabId) {
+            var mainContainer = document.getElementById('main-container');
+            if (mainContainer) {
+                if (tabId === 'league') {
+                    mainContainer.className = "flex-grow max-w-[1600px] mx-auto w-full px-2 sm:px-4 py-3 z-10";
+                } else {
+                    mainContainer.className = "flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 z-10";
+                }
+            }
+
             for (var i = 0; i < tabs.length; i++) {
                 var id = tabs[i];
                 var pane = document.getElementById('tab-' + id);
@@ -394,15 +428,19 @@
 
                 if (btnDesktop) {
                     if (isCurrent) {
-                        btnDesktop.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30";
+                        btnDesktop.className = "nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-white bg-rose-600 shadow-md shadow-rose-900/30";
+                    } else if (id === 'league') {
+                        btnDesktop.className = "nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-emerald-400 hover:text-white hover:bg-slate-800";
                     } else {
-                        btnDesktop.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+                        btnDesktop.className = "nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
                     }
                 }
 
                 if (btnMobile) {
                     if (isCurrent) {
                         btnMobile.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 bg-rose-600 text-white";
+                    } else if (id === 'league') {
+                        btnMobile.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-emerald-400 hover:bg-slate-800";
                     } else {
                         btnMobile.className = "mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800";
                     }
