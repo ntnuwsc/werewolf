@@ -103,30 +103,38 @@
 
         <!-- TAB 0: 首頁 -->
         <div id="tab-home" class="tab-pane block space-y-10">
-            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-rose-950/30 via-slate-900/90 to-slate-900/95 p-8 sm:p-14 text-center shadow-2xl backdrop-blur-md">
-                <div class="max-w-3xl mx-auto space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold uppercase tracking-wider">
-                        Night Falls · Close Your Eyes
-                    </div>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- 英文小標籤 -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/50 border border-rose-500/30 text-rose-300 text-xs font-semibold uppercase tracking-widest">
+                    The night has a secret · fear the unknow
+                </div>
+            
+                <!-- 主標題與破題副標 -->
+                <div class="space-y-2">
                     <h1 class="text-4xl sm:text-6xl font-black text-white tracking-wider">
                         天黑請閉眼
                     </h1>
-                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed sm:leading-loose">
-                        在謊言與真相交織的村莊裡，誰是潛伏在暗處的狼人？<br class="hidden sm:inline">
-                        誰又是引領村民走向光明的神職？<br>
-                        準備好你的邏輯與口才，這是一場沒有硝煙的戰爭。
+                    <p class="text-lg sm:text-xl font-bold text-rose-400 tracking-wide">
+                        黑夜之下，秘密正在甦醒
                     </p>
-                    <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
-                        <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg transition">
-                            閱讀社內規則
-                        </button>
-                        <button onclick="switchTab('league')" class="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-sm sm:text-base shadow-lg transition">
-                            🏆 進入暗月聯賽
-                        </button>
-                        <button onclick="switchTab('terms')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm sm:text-base border border-slate-700 transition">
-                            查詢術語字典
-                        </button>
-                    </div>
+                </div>
+            
+                <!-- 精煉內文（透過顏色區分層次） -->
+                <div class="space-y-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+                    <p>
+                        善良可能是<span class="text-white font-semibold">偽裝</span>，正義可能是<span class="text-white font-semibold">謊言</span>。
+                    </p>
+                    <p>
+                        當信任成為最昂貴的代價，沒有人能置身事外。
+                    </p>
+                    <p class="pt-2 text-slate-200 font-medium">
+                        黎明之前——找出藏在人群中的<span class="text-rose-500 font-bold">惡意</span>。
+                    </p>
+                </div>
+            
+                <!-- 按鈕區保持不變 -->
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+                    ...
                 </div>
             </div>
 
