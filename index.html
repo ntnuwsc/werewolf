@@ -239,11 +239,170 @@
         </div>
 
         <!-- TAB 3: 版型介紹 -->
-        <div id="tab-boards" class="tab-pane hidden space-y-6">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
-                <h2 class="text-2xl font-bold text-white mb-2">版型介紹</h2>
-                <p class="text-slate-400 text-sm mb-4">即將收錄各人數經典配置與遊戲流程。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
+        <div id="tab-boards" class="tab-pane hidden space-y-8">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">狼人殺版型介紹</h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">收錄適合不同人數的經典遊戲配置與角色陣容，幫助法官快速建立對局，讓玩家熟悉各版型的核心邏輯與特色。</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- 6人版型 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 6人局 · 預女獵
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">新手入門</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">狼人 × 2</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9人版型 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 9人局 · 預女獵
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">基礎進階</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">狼人 × 3</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵人</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10人版型 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 10人局 · 惡靈騎士
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">快速競技</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">惡靈騎士、狼人 × 2</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵人</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12人標準版型 (血月) -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 血月雙寶
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-900/50 border border-emerald-600/40 text-emerald-400 text-xs font-semibold">標準競技</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">血月使者、狼人 × 3</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵人、白痴</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12人標準版型 (機械狼) -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 機械通靈
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-900/50 border border-emerald-600/40 text-emerald-400 text-xs font-semibold">標準競技</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">機械狼、狼人 × 3</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">通靈師、女巫、獵人、守衛</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12人特殊版型 (狼美人) -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 狼美騎士
+                            </h3>
+                            <span class="px-2.5 py-1 rounded-lg bg-amber-900/50 border border-amber-600/40 text-amber-400 text-xs font-semibold">特殊打法</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">邪惡陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">狼美人、狼人 × 3</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、守衛、騎士</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
+                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
