@@ -103,7 +103,6 @@
 
         <!-- TAB 0: 首頁 -->
         <div id="tab-home" class="tab-pane block space-y-10">
-            <!-- 主視覺區 (Hero Section) -->
             <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-gradient-to-b from-rose-950/30 via-slate-900/90 to-slate-900/95 p-8 sm:p-14 text-center shadow-2xl backdrop-blur-md">
                 <div class="max-w-3xl mx-auto space-y-6">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold uppercase tracking-wider">
@@ -117,11 +116,17 @@
                         善良可能是偽裝，正義可能是謊言，當信任成為最昂貴的代價，沒有人能置身事外。<br>
                         黎明之前——找出藏在人群中的惡意。
                     </p>
-                </div>
-            
-                <!-- 按鈕區保持不變 -->
-                <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
-                    ...
+                    <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+                        <button onclick="switchTab('rules')" class="px-6 py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm sm:text-base shadow-lg transition">
+                            閱讀社內規則
+                        </button>
+                        <button onclick="switchTab('league')" class="px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-sm sm:text-base shadow-lg transition">
+                            🏆 進入暗月聯賽
+                        </button>
+                        <button onclick="switchTab('terms')" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm sm:text-base border border-slate-700 transition">
+                            查詢術語字典
+                        </button>
+                    </div>
                 </div>
             </div>
 
