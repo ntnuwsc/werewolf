@@ -93,7 +93,7 @@
             <button onclick="switchTab('roles')" id="m-tab-btn-roles" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">角色介紹</button>
             <button onclick="switchTab('boards')" id="m-tab-btn-boards" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">版型介紹</button>
             <button onclick="switchTab('terms')" id="m-tab-btn-terms" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">術語介紹</button>
-            <button onclick="switchTab('league')" id="m-tab-btn-league" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-emerald-400 hover:bg-slate-800">🏆 暗月聯賽 (積分與投票)</button>
+            <button onclick="switchTab('league')" id="m-tab-btn-league" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-emerald-400 hover:bg-slate-800">🏆 暗月聯賽</button>
             <button onclick="switchTab('others')" id="m-tab-btn-others" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-3 text-slate-300 hover:bg-slate-800">其他</button>
         </div>
     </header>
@@ -136,13 +136,11 @@
                     <div class="w-2 h-5 bg-rose-600 rounded-full"></div>
                     <h2 class="text-xl font-bold text-white tracking-wide">社團手冊與聯賽導覽</h2>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                     <div onclick="switchTab('rules')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">社內規則</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                發言時長、警長競選與歸票、狼人自爆吞警徽、死後技能與拍刀判定標準。
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">發言時長、警長競選與歸票、狼人自爆吞警徽、死後技能與拍刀判定標準。</p>
                         </div>
                         <span class="text-xs font-semibold text-rose-400 mt-4">查看規則 →</span>
                     </div>
@@ -150,9 +148,7 @@
                     <div onclick="switchTab('roles')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">角色介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                深入了解嗜血的邪惡陣營、守護村莊的好人神職與第三方陣營之獨特技能。
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">深入了解嗜血的邪惡陣營、守護村莊的好人神職與第三方陣營之獨特技能。</p>
                         </div>
                         <span class="text-xs font-semibold text-slate-400 mt-4">查看角色 →</span>
                     </div>
@@ -160,9 +156,7 @@
                     <div onclick="switchTab('boards')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">版型介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                適合不同人數的經典遊戲配置（6~12人局），提供上帝視角主持流程。
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">適合不同人數的經典遊戲配置（6~12人局），提供上帝視角主持流程。</p>
                         </div>
                         <span class="text-xs font-semibold text-slate-400 mt-4">查看版型 →</span>
                     </div>
@@ -170,9 +164,7 @@
                     <div onclick="switchTab('terms')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">術語介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                                收錄金水、銀水、查殺、倒鉤、奶穿等 160+ 面殺詞典，支援即時關鍵字搜尋。
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">收錄金水、銀水、查殺、倒鉤、奶穿等 160+ 面殺詞典，支援即時關鍵字搜尋。</p>
                         </div>
                         <span class="text-xs font-semibold text-rose-400 mt-4">查看術語 →</span>
                     </div>
@@ -180,9 +172,7 @@
                     <div onclick="switchTab('league')" class="cursor-pointer rounded-2xl border border-emerald-900/60 bg-emerald-950/20 p-5 hover:border-emerald-600 hover:bg-emerald-950/40 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-emerald-300 mb-2">🏆 暗月聯賽</h3>
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                賽季總覽、即時積分排行榜、單場 MVP 線上投票與對局紀錄管理系統。
-                            </p>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">賽季總覽、即時積分排行榜、單場 MVP 線上投票與對局紀錄管理系統。</p>
                         </div>
                         <span class="text-xs font-semibold text-emerald-400 mt-4">進入聯賽系統 →</span>
                     </div>
@@ -194,35 +184,23 @@
         <div id="tab-rules" class="tab-pane hidden space-y-8">
             <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="max-w-2xl">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                        狼人殺社內規則
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        本社團標準發言時長、警長競選與歸票、狼人自爆、死後與白天技能發動規範，以及加速局拍刀判定流程。
-                    </p>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">狼人殺社內規則</h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">本社團標準發言時長、警長競選與歸票、狼人自爆、死後與白天技能發動規範，以及加速局拍刀判定流程。</p>
                 </div>
             </div>
-
             <section class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur">
                 <h2 class="text-xl font-bold text-white pb-3 border-b border-slate-800 mb-4">角色規則</h2>
                 <div class="text-slate-200 text-base leading-relaxed">
                     角色技能與判定跟隨 Line 官方帳號：<a href="https://line.me/R/ti/p/@231pfgbz" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:text-rose-300 font-semibold underline underline-offset-4 decoration-rose-500/50">狼人殺大百科</a>
                 </div>
             </section>
-
+            <!-- 遊戲進行 -->
             <div class="space-y-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-2 h-5 bg-rose-600 rounded-full"></div>
-                    <h2 class="text-2xl font-bold text-white">遊戲進行</h2>
-                </div>
-
+                <div class="flex items-center gap-3"><div class="w-2 h-5 bg-rose-600 rounded-full"></div><h2 class="text-2xl font-bold text-white">遊戲進行</h2></div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                     <h3 class="text-lg font-bold text-white">發言規則</h3>
-                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 border border-slate-800">
-                        每人每輪發言時長為 <strong>90 秒</strong>，每人每局有 <strong>兩次機會加時 30 秒</strong>。
-                    </div>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 border border-slate-800">每人每輪發言時長為 <strong>90 秒</strong>，每人每局有 <strong>兩次機會加時 30 秒</strong>。</div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                     <h3 class="text-lg font-bold text-white">警長規則</h3>
                     <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-3">
@@ -230,14 +208,10 @@
                         <p class="border-t border-slate-800/80 pt-3">當選警長者可獲得 <strong>1.5 票歸票權</strong>，在單死當天，警長可選擇從死左或死右開始發言，否則以警左或警右開始發言，在所有人發言完畢後，警長可以歸票，<strong>若歸票一人，警長可維持 1.5 票，否則變為 1 票</strong>。</p>
                     </div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                     <h3 class="text-lg font-bold text-white">自爆規則</h3>
-                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800">
-                        若拿到的狼人牌可自爆，可在警長階段以及白天階段的任意時間自爆，直接進入天黑，無須翻牌且沒有遺言，自爆的狼人可選擇在夜晚點刀後離場，若警上階段被女巫灑毒的狼人自爆仍可自爆成功，若狼人在警上階段自爆，天亮後直接進入退水環節，若此時又有狼人自爆，則警徽流失（稱為<strong>雙爆吞警徽</strong>）。
-                    </div>
+                    <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800">若拿到的狼人牌可自爆，可在警長階段以及白天階段的任意時間自爆，直接進入天黑，無須翻牌且沒有遺言，自爆的狼人可選擇在夜晚點刀後離場，若警上階段被女巫灑毒的狼人自爆仍可自爆成功，若狼人在警上階段自爆，天亮後直接進入退水環節，若此時又有狼人自爆，則警徽流失（稱為<strong>雙爆吞警徽</strong>）。</div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                     <h3 class="text-lg font-bold text-white">日間技能規則</h3>
                     <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-2">
@@ -245,7 +219,6 @@
                         <p>白天發言階段的技能依角色技能發動時機發動（如：騎士可在白天發言階段隨時發動技能）。</p>
                     </div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-3">
                     <h3 class="text-lg font-bold text-white">拍刀規則</h3>
                     <div class="text-slate-300 text-sm sm:text-base leading-relaxed bg-slate-950/60 rounded-xl p-4 sm:p-5 border border-slate-800 space-y-3">
@@ -278,15 +251,10 @@
         <div id="tab-terms" class="tab-pane hidden space-y-8">
             <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="max-w-3xl">
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                        狼人殺術語大全
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        收錄常見面殺專業用語、身分定義、發言手法與對局術語。每個術語獨立條列，支援即時關鍵字搜尋與分類篩選。
-                    </p>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">狼人殺術語大全</h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">收錄常見面殺專業用語、身分定義、發言手法與對局術語。每個術語獨立條列，支援即時關鍵字搜尋與分類篩選。</p>
                 </div>
             </div>
-
             <div class="sticky top-20 z-40 bg-[#0b0f19]/95 backdrop-blur-md py-3 rounded-2xl space-y-3">
                 <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs sm:text-sm no-scrollbar">
                     <button onclick="setTermCategory('all')" class="term-cat-btn active px-3.5 py-1.5 rounded-xl font-medium bg-rose-600 text-white transition shrink-0 shadow-sm" data-cat="all">全部</button>
@@ -297,7 +265,6 @@
                     <button onclick="setTermCategory('cat5')" class="term-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0" data-cat="cat5">五、流程、投票與技能</button>
                     <button onclick="setTermCategory('cat6')" class="term-cat-btn px-3.5 py-1.5 rounded-xl font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0" data-cat="cat6">六、板子局況與規範</button>
                 </div>
-
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 1114 0z"></path></svg>
@@ -305,12 +272,10 @@
                     <input id="term-search" oninput="filterTerms()" type="text" placeholder="輸入關鍵字快速搜尋術語或定義（例如：奶穿、金水、倒鉤、表水、自爆）..." class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 text-sm sm:text-base shadow-lg">
                 </div>
             </div>
-
             <div id="no-search-result" class="hidden text-center py-12 text-slate-400">
                 <p class="text-base font-semibold">找不到符合關鍵字的術語</p>
                 <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他詞彙或切換上方分類</p>
             </div>
-
             <div id="terms-container" class="space-y-10"></div>
         </div>
 
@@ -331,19 +296,53 @@
             </div>
         </div>
 
-        <!-- TAB 6: 其他 -->
+        <!-- TAB 6: 其他 / 實用工具箱 -->
         <div id="tab-others" class="tab-pane hidden space-y-6">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
-                <h2 class="text-2xl font-bold text-white mb-2">其他</h2>
-                <p class="text-slate-400 text-sm mb-4">即將收錄社團公告與活動資訊。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm mb-6">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold mb-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        Toolkit & Resources
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">實用工具箱與其他資源</h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">提供法官與玩家實用的對局輔助工具，以及社團相關的實用資源。</p>
+                </div>
             </div>
-            <a href="https://werewolf-system.vercel.app" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px;">
-                🐺 啟動狼人殺輔助系統
-            </a>
+
+            <!-- 工具卡片區 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                <!-- 狼人殺輔助系統連結 -->
+                <div class="relative group rounded-2xl overflow-hidden border border-blue-900/40 bg-gradient-to-br from-blue-950/30 to-slate-900/80 p-1 flex flex-col hover:border-blue-500/50 transition-colors shadow-lg">
+                    <div class="bg-slate-900/90 rounded-xl p-6 h-full flex flex-col justify-between relative z-10 backdrop-blur-md">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform shadow-inner shadow-blue-500/20">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">狼人殺輔助系統</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                專為面殺法官與玩家打造的完整輔助工具。包含：<br>
+                                • <strong class="text-slate-300">隨機轉盤</strong> (抽座位、抽發言順序)<br>
+                                • <strong class="text-slate-300">發言計時器</strong> (90秒倒數與加時)<br>
+                                • <strong class="text-slate-300">法官投票計算機</strong> (含警長 1.5 票計算)
+                            </p>
+                        </div>
+                        <a href="https://werewolf-system.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-lg shadow-blue-900/50 transition-all group-hover:shadow-blue-900/80 gap-2">
+                            <span>啟動輔助系統</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 未來擴充預留區塊 -->
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 flex flex-col justify-center items-center text-center min-h-[280px]">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-500 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-400 mb-2">更多資源籌備中</h3>
+                    <p class="text-sm text-slate-500">社團公告、活動資訊與更多實用工具即將上線。</p>
+                </div>
+            </div>
         </div>
 
     </main>
