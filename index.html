@@ -54,7 +54,7 @@
                 <button onclick="switchTab('home')" class="flex items-center gap-3 text-left focus:outline-none group">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-red-900 flex items-center justify-center shadow-lg shadow-rose-950/50 border border-rose-500/30 group-hover:scale-105 transition-transform">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.32.22.63.37.93.9 1.8 2.74 3.03 4.88 3.03 1.05 0 2.03-.31 2.85-.84.28 2.04 1.77 3.73 4.41-1.5 1.34-3.48 2.19-5.04 2.19zm6.6-3.83c-1.42-.64-2.45-1.95-2.58-3.53.94-.48 1.68-1.3 2.08-2.3.49.88 1.25 1.58 2.18 1.98-.32 1.48-1.11 2.76-2.18 3.65l.5.2z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.32.22.63.37.93.9 1.8 2.74 3.03 4.88 3.03 1.05 0 2.03-.31 2.85-.84.28 2.04 1.77 3.73 4.41-1.5z"/>
                         </svg>
                     </div>
                     <div>
@@ -156,7 +156,7 @@
                     <div onclick="switchTab('boards')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 hover:bg-slate-900 transition flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-white mb-2">版型介紹</h3>
-                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">適合不同人數的經典遊戲配置（6~12人局），提供上帝視角主持流程。</p>
+                            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">收錄社內版型的角色配置、夜間順序與技能說明，支援搜尋、分類與角色連動。</p>
                         </div>
                         <span class="text-xs font-semibold text-slate-400 mt-4">查看版型 →</span>
                     </div>
@@ -230,12 +230,29 @@
         </div>
 
         <!-- TAB 2: 角色介紹 -->
-        <div id="tab-roles" class="tab-pane hidden space-y-6">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
-                <h2 class="text-2xl font-bold text-white mb-2">角色介紹</h2>
-                <p class="text-slate-400 text-sm mb-4">即將收錄各方陣營之技能與精選打法。</p>
-                <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300">內容暫時留空 · 敬請期待</span>
+        <div id="tab-roles" class="tab-pane hidden space-y-8">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">狼人殺角色介紹</h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">收錄社內版型中出現的所有角色與技能說明。點擊角色可查看完整介紹與使用該角色的版型，點擊版型可直接開啟版型詳情。</p>
+                </div>
             </div>
+            <div class="sticky top-20 z-40 bg-[#0b0f19]/95 backdrop-blur-md py-3 rounded-2xl space-y-3">
+                <div id="role-camp-bar" class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs sm:text-sm no-scrollbar"></div>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 1114 0z"></path></svg>
+                    </span>
+                    <input id="role-search" oninput="renderRoles()" type="text" placeholder="搜尋角色名稱或技能關鍵字（例如：女巫、自爆、繼承刀權、無敵刀）..." class="w-full pl-11 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 text-sm sm:text-base shadow-lg">
+                    <button id="role-search-clear" onclick="clearRoleSearch()" type="button" class="hidden absolute inset-y-0 right-0 px-3.5 text-slate-500 hover:text-white" aria-label="清除搜尋">✕</button>
+                </div>
+                <p id="role-count" class="text-xs text-slate-500 px-1"></p>
+            </div>
+            <div id="roles-empty" class="hidden text-center py-12 text-slate-400">
+                <p class="text-base font-semibold">找不到符合條件的角色</p>
+                <p class="text-xs text-slate-500 mt-1">請嘗試輸入其他關鍵字或切換上方陣營</p>
+            </div>
+            <div id="roles-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </div>
 
         <!-- TAB 3: 版型介紹 -->
@@ -243,167 +260,28 @@
             <div class="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/60 p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="max-w-3xl">
                     <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">狼人殺版型介紹</h1>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">收錄適合不同人數的經典遊戲配置與角色陣容，幫助法官快速建立對局，讓玩家熟悉各版型的核心邏輯與特色。</p>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">收錄社內版型的角色配置、夜間順序與技能說明，幫助法官快速建立對局。點擊版型查看詳細內容，點擊角色名稱可查看角色介紹。</p>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- 6人版型 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 6人局 · 預女
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">新手入門</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">狼人 × 2</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 2</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="sticky top-20 z-40 bg-[#0b0f19]/95 backdrop-blur-md py-3 rounded-2xl space-y-3">
+                <div id="board-cat-bar" class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs sm:text-sm no-scrollbar"></div>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 1114 0z"></path></svg>
+                    </span>
+                    <input id="board-search" oninput="renderBoards()" type="text" placeholder="搜尋版型名稱、角色或技能（例如：狼美人、守衛、攝夢）..." class="w-full pl-11 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 text-sm sm:text-base shadow-lg">
+                    <button id="board-search-clear" onclick="clearBoardSearch()" type="button" class="hidden absolute inset-y-0 right-0 px-3.5 text-slate-500 hover:text-white" aria-label="清除搜尋">✕</button>
                 </div>
-
-                <!-- 9人版型 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 9人局 · 預女獵
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">基礎進階</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">狼人 × 3</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵人</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 3</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10人版型 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 10人局 · 惡靈騎士
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold">快速競技</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">惡靈騎士、狼人 × 2</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵人</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12人標準版型 (血月) -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 血月獵魔人
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-emerald-900/50 border border-emerald-600/40 text-emerald-400 text-xs font-semibold">標準競技</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">血月使者、狼人 × 3</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、獵魔人、白痴</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12人標準版型 (機械狼) -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 機械狼通靈師
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-emerald-900/50 border border-emerald-600/40 text-emerald-400 text-xs font-semibold">標準競技</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">機械狼、狼人 × 3</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">通靈師、女巫、獵人、守衛</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12人特殊版型 (狼美人) -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                                <span class="w-2 h-5 bg-rose-600 rounded-full"></span> 12人局 · 狼美人騎士
-                            </h3>
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-900/50 border border-amber-600/40 text-amber-400 text-xs font-semibold">標準競技</span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-rose-950 text-rose-400 text-xs font-bold shrink-0">狼人陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">狼美人、狼人 × 3</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-blue-950 text-blue-400 text-xs font-bold shrink-0">神職陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">預言家、女巫、守衛、騎士</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="px-2 py-1 rounded bg-slate-800 text-slate-400 text-xs font-bold shrink-0">平民陣營</span>
-                                <p class="text-sm text-slate-300 pt-0.5">平民 × 4</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap items-center gap-2 px-1">
+                    <p id="board-count" class="text-xs text-slate-500"></p>
+                    <div id="board-role-filter"></div>
                 </div>
             </div>
+            <div id="boards-empty" class="hidden text-center py-12 text-slate-400">
+                <p id="boards-empty-title" class="text-base font-semibold">找不到符合條件的版型</p>
+                <p id="boards-empty-sub" class="text-xs text-slate-500 mt-1">請嘗試輸入其他關鍵字或切換上方分類</p>
+            </div>
+            <div id="boards-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
         </div>
 
         <!-- TAB 4: 術語介紹 -->
@@ -506,6 +384,18 @@
 
     </main>
 
+    <!-- 共用詳情面板（版型 / 角色） -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-[60] items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm sm:p-4" onclick="if(event.target===this)closeDetail()">
+        <div class="w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl border border-slate-800 bg-[#0e1424] shadow-2xl">
+            <div class="sticky top-0 z-10 flex items-center justify-between gap-2 px-4 sm:px-6 py-3 border-b border-slate-800 bg-[#0e1424]/95 backdrop-blur">
+                <button id="detail-back" onclick="detailBack()" type="button" class="invisible text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition">← 返回</button>
+                <span id="detail-kind" class="text-xs font-semibold text-slate-500"></span>
+                <button onclick="closeDetail()" type="button" class="text-slate-400 hover:text-white px-2 py-1 rounded-lg hover:bg-slate-800 transition" aria-label="關閉">✕</button>
+            </div>
+            <div id="detail-body" class="p-5 sm:p-7 space-y-6"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="border-t border-slate-800/80 bg-[#080d17] py-6 z-10 text-center text-xs text-slate-500">
         狼人殺社團內部手冊 & 暗月聯賽 · Ready for GitHub Pages
@@ -529,7 +419,7 @@
             {"catId": "cat5", "category": "五、流程推進、投票機制與技能結算", "sub": "投票放逐機制", "items": [["歸票", "號召大家在放逐投票環節投票給某個玩家。"], ["號票", "號召大家一起投票某位玩家。"], ["衝票", "放逐投票時，多名狼人共同將票投給某位玩家的行為。"], ["分票", "指有些玩家沒有按照歸票來投票，或者各玩家意見不一，也可以指某位玩家歸票了多名玩家，或在某人歸票後又提出了新的歸票目標。"], ["壓手 / 棄票", "放逐投票階段選擇不投票。"], ["平票 PK", "在警長競選、放逐投票環節，獲得相同票數的兩個及以上玩家，將額外進行一輪對決發言。"], ["PK 台", "指平票對決發言的玩家。"], ["拉 PK", "號召大家在放逐投票環節在某些玩家中投票。"], ["票型", "投票的情況。"], ["票出", "指透過白天投票環節，將票數最多的玩家放逐出局。"], ["順抬 / 順推", "按順序將玩家投出局。"], ["外飛", "指在被查驗、在警徽流之外的玩家裡，投票某個玩家，讓其出局。"], ["扛推", "放逐投票階段放逐好人。"], ["扛出", "指在場面上沒有明確狼人時，放逐某個未確定是狼但出局後不影響輪次的玩家。"], ["驗一砸一", "通常指預言家在兩個可疑程度、身份範圍類似的玩家中，查驗一個放逐一個。"]]},
             {"catId": "cat5", "category": "五、流程推進、投票機制與技能結算", "sub": "技能發動與夜間結算 · 通用與結算狀態", "items": [["帶走", "有身份的牌發動技能使其他玩家出局。"], ["刀口", "被狼人擊殺的玩家。"], ["倒牌", "出局。"], ["平安夜", "前一晚無人出局。"], ["平安日", "白天無人被放逐出局。"]]},
             {"catId": "cat5", "category": "五、流程推進、投票機制與技能結算", "sub": "技能發動與夜間結算 · 好人技能", "items": [["空守", "守衛選擇不守護。"], ["自守", "守衛選擇守護自己。"], ["奶穿 / 同守同救", "同個夜晚，守衛守護被女巫解救的目標，造成該目標出局。"], ["斷劍", "騎士決鬥好人，造成騎士自己出局。"], ["撒毒 / 潑", "女巫使用毒藥。"], ["撈", "可指女巫使用解藥。"], ["盲毒 / 天毒", "指女巫在首夜不知道任何資訊的情況下，使用毒藥的行為。天毒通常指女巫未吃首刀時使用毒藥。"], ["彈死", "商人選擇狼人為幸運兒後，自己出局。"], ["自證", "指玩家能夠自己證明自己的身份。"]]},
-            {"catId": "cat5", "category": "五、流程推進、技能結算", "sub": "技能發動與夜間結算 · 狼人與特殊技能", "items": [["空刀", "狼隊夜晚選擇不擊殺玩家。"], ["首刀", "狼隊在全局第一個擊殺的目標。"], ["自刀", "狼人在夜晚選擇擊殺自己。"], ["自爆", "白天發言階段時，狼人玩家可隨時選擇自爆，結束發言階段並直接進入天黑，部分大狼或在特殊狀況下無法自爆。"], ["入狼隊", "夜間參與狼人的討論和行動。"], ["不入狼隊", "夜間不參與狼人的討論和行動。"], ["反彈 / 反傷", "被好人陣營角色選為技能目標時，對方會出局。"], ["連", "丘比特選擇玩家成為情侶的行為。"], ["埋", "被盜賊捨棄的底牌。"]]},
+            {"catId": "cat5", "category": "五、流程推進、投票機制與技能結算", "sub": "技能發動與夜間結算 · 狼人與特殊技能", "items": [["空刀", "狼隊夜晚選擇不擊殺玩家。"], ["首刀", "狼隊在全局第一個擊殺的目標。"], ["自刀", "狼人在夜晚選擇擊殺自己。"], ["覺醒刀", "特殊狼人在特定狀況下能進行的額外擊殺。"], ["無敵刀", "無視任何保護類技能（如解藥、守護等）的擊殺技能。"], ["自爆", "白天發言階段時，狼人玩家可隨時選擇自爆，結束發言階段並直接進入天黑，部分大狼或在特殊狀況下無法自爆。"], ["入狼隊", "夜間參與狼人的討論和行動。"], ["不入狼隊", "夜間不參與狼人的討論和行動。"], ["反彈 / 反傷", "被好人陣營角色選為技能目標時，對方會出局。"], ["連", "丘比特選擇玩家成為情侶的行為。"], ["埋", "被盜賊捨棄的底牌。"]]},
             {"catId": "cat5", "category": "五、流程推進、投票機制與技能結算", "sub": "輪次與勝負判定", "items": [["輪次", "可指輪到某些玩家的次序，也可指後續進行狼刀或放逐投票順序。"], ["狼刀領先", "指狼人可以在好人放逐所有狼人前完成屠邊。"], ["警推領先", "指好人可以在狼人完成屠邊前放逐所有狼人。"], ["狼刀在先", "狼人的刀優先於其它讓狼人出局的技能，若狼人擊殺一名玩家後即達成勝利條件，則無須進行後續流程與結算。"], ["綁票", "指狼人陣營或第三方陣營的玩家票數已大於等於其他陣營，勝負已分。"], ["屠神", "讓所有神職出局。"], ["屠民", "讓所有平民出局。"], ["屠邊", "狼人讓村民、神職某一邊全部出局即獲勝。"], ["屠城", "狼人讓所有好人出局即獲勝。"], ["交牌", "指某一方陣營放棄遊戲，即認輸，通常為狼人選擇交牌。"]]},
             {"catId": "cat6", "category": "六、板子局況與遊戲規範", "sub": "局況模式", "items": [["慫狼局", "沒有狼人悍跳預言家的對局。"], ["單邊預", "指對局中只有一個玩家聲稱自己是預言家。"], ["生推局", "指場上沒資訊或資訊過少的對局。"], ["團隊", "用來代指某一個具有相同目的或認知的多名玩家，可以指好人、狼人團隊，也可以代指場上有多個預言家時，各預言家的支持者群體。"]]},
             {"catId": "cat6", "category": "六、板子局況與遊戲規範", "sub": "競技邊界與規則", "items": [["場外", "非遊戲進行中的資訊與內容。"], ["貼臉", "情緒化發言的行為，通常是賭咒發誓。"]]}
@@ -695,6 +585,585 @@
             } else {
                 switchTab('home');
             }
+        });
+    </script>
+    <script>
+        /* =========================================================
+           版型 / 角色 資料（單一資料來源）
+           - 角色介紹由各版型「技能說明」自動提取，陣營由「配置」推導
+           - 版型分類：基礎 / 進階 / 娛樂 / 三方 / 其他
+           ========================================================= */
+        var BOARD_CATEGORIES = ['全部', '基礎', '進階', '娛樂', '三方', '其他'];
+
+        var boardsData = [
+            {
+                name: '預女獵白混', category: '進階', notices: [],
+                config: { wolf: [['狼人', 4]], god: [['預言家', 1], ['女巫', 1], ['獵人', 1], ['白痴', 1]], villager: [['平民', 3]], variable: [['混血兒', 1]] },
+                night: [
+                    { label: '首夜', steps: ['混血兒', '狼人', '女巫', '預言家', '獵人', '白痴'] },
+                    { label: '次夜', steps: ['狼人', '女巫', '預言家', '獵人'] }
+                ],
+                skills: [
+                    { role: '預言家', text: '每晚可查驗一名存活玩家是好人還是狼人。' },
+                    { role: '女巫', text: '擁有一瓶解藥與一瓶毒藥，解藥可解救當晚被狼人擊殺的玩家，毒藥可殺死一名玩家。同一晚只能使用一瓶藥，且整場遊戲只能各使用一次。', notes: ['當女巫持有解藥時，可以看到狼人的擊殺對象；反之則無法。', '女巫全程不可自救（特殊規則除外）。'] },
+                    { role: '獵人', text: '被狼人擊殺出局或被放逐出局時，可以開槍帶走一名玩家。', notes: ['被毒出局無法開槍。'] },
+                    { role: '白痴', text: '被放逐時會翻牌免疫放逐，後續遊戲仍可發言，但永久失去投票權。', notes: ['翻牌白痴不須追刀，即翻牌白痴在規則上視為死亡。'] },
+                    { role: '狼人', text: '每晚可睜眼擊殺一名玩家。白天發言階段可隨時自爆，直接進入天黑。', notes: ['警上自爆的狼人即使被女巫毒，仍可自爆進入天黑（自爆吞毒）。', '自刀的狼人無法自爆。'] },
+                    { role: '混血兒', text: '首夜第一個睜眼選擇場上一名玩家成為自己的榜樣，混血兒的勝利條件始終跟隨榜樣。', notes: ['混血兒占民坑，狼人屠民時須擊殺混血兒，即使混血兒的榜樣為狼人。', '混血兒被預言家查驗始終為好人，即使混血兒的榜樣為狼人。'] },
+                    { role: '平民', text: '無特殊能力' }
+                ]
+            },
+            {
+                name: '狼王魔術師', category: '基礎', notices: [],
+                config: { wolf: [['狼王', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['獵人', 1], ['魔術師', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['魔術師', '狼人', '女巫', '預言家', '獵人', '狼王'] } ],
+                skills: [
+                    { role: '魔術師', text: '每晚可選擇兩個號碼進行交換，當晚所有作用在該兩名玩家的技能將在白天時交換。', notes: ['整場遊戲中，每個玩家只能被交換一次，可選擇不換。'] },
+                    { role: '狼王', text: '被狼人擊殺出局或被放逐出局時，可以使用狼王爪帶走一名玩家，使其一併出局。若狼王為最後一名狼人出局，則無法開槍。', notes: ['自爆或被毒出局無法開槍。'] }
+                ]
+            },
+            {
+                name: '狼美人騎士', category: '基礎', notices: [],
+                config: { wolf: [['狼美人', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['騎士', 1], ['守衛', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['守衛', '狼人', '狼美人', '女巫', '預言家', '騎士'] },
+                    { label: '次夜', steps: ['守衛', '狼人', '狼美人', '女巫', '預言家'] }
+                ],
+                skills: [
+                    { role: '守衛', text: '每個夜晚可以選擇守護一名玩家，該玩家當晚不會被狼人擊殺，不能連續守護同一名玩家。', notes: ['守衛可以選擇空守。', '若守衛守護的對象與女巫使用解藥的對象相同，該玩家仍會出局。', '守衛無法守護女巫的解藥。'] },
+                    { role: '騎士', text: '白天發言階段（警上階段除外）可隨時翻牌，選擇一名玩家進行決鬥，若該玩家為狼人，則該狼人死亡，直接進入天黑；若該玩家為好人，則騎士死亡並發表遺言，而後被中斷發言的玩家繼續發言，白天流程繼續。', notes: ['騎士決鬥狼美人時，被狼美人魅惑的玩家不會殉情。'] },
+                    { role: '狼美人', text: '不能自刀、自爆，每個夜晚選擇一名玩家魅惑，不能連續兩晚魅惑同一名玩家。當狼美人死亡時，被魅惑的玩家一同殉情出局。當狼美人是最後一狼出局時，若被魅惑的玩家死亡會使得狼人完成屠邊，則判定狼人獲勝。', notes: ['騎士決鬥狼美人時，被狼美人魅惑的玩家不會殉情。'] }
+                ]
+            },
+            {
+                name: '機械狼通靈師', category: '進階', notices: [],
+                config: { wolf: [['機械狼', 1], ['狼人', 3]], god: [['通靈師', 1], ['女巫', 1], ['獵人', 1], ['守衛', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['機械狼', '守衛', '狼人', '女巫', '獵人', '通靈師', '機械狼（獵人開槍狀態）'] } ],
+                skills: [
+                    { role: '通靈師', text: '每晚可查驗一名存活玩家的真實身分。', notes: ['通靈師查驗機械狼時，顯示為其學習到的身分；若通靈師查驗尚未學習的機械狼，則顯示為機械狼。'] },
+                    { role: '機械狼', text: '不能自爆，不與狼人見面，狼人也看不到機械狼，當其他狼人死亡後會繼承刀權。獲得技能學習，整場遊戲一次機會，可在任一夜晚選擇一名玩家學習，白天時根據學習到的玩家身分獲得技能：', notes: [
+                        '通靈師：下一晚開始，每晚可查驗一名存活玩家的真實身分。',
+                        '女巫：下一晚將獲得一瓶毒藥，可殺死一名玩家。',
+                        '獵人：被狼人擊殺出局或被放逐出局時，可以開槍帶走一名玩家，被毒則無法開槍。',
+                        '守衛：下一晚開始，每晚可守護一名玩家，該名玩家不會因夜晚技能而死亡（包含女巫的毒藥與獵人的夜槍）。不能連續守護同一名玩家，守護成功後失去技能。',
+                        '平民：無特殊能力。',
+                        { t: '狼人：在繼承刀權的當晚，可額外擊殺一名玩家。', sub: ['若學到狼人的機械狼發動技能當晚，女巫仍有解藥，女巫只會看到狼人擊殺的玩家，不會看到機械狼額外的刀型。'] }
+                    ] }
+                ]
+            },
+            {
+                name: '石像鬼守墓人', category: '基礎', notices: [],
+                config: { wolf: [['石像鬼', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['獵人', 1], ['守墓人', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['石像鬼（查驗）', '狼人', '女巫', '預言家', '獵人', '守墓人', '石像鬼（查驗結果）'] },
+                    { label: '次夜', steps: ['石像鬼', '狼人', '女巫', '預言家', '獵人', '守墓人'] }
+                ],
+                skills: [
+                    { role: '守墓人', text: '第二晚開始，可以看到白天被放逐的玩家是好人還是狼人。無法看到以其他方式死亡的玩家，若白天無人被放逐，同樣不會獲得任何資訊。' },
+                    { role: '石像鬼', text: '不能自爆，不與狼人見面，狼人也看不到石像鬼，當其他狼人死亡後會繼承刀權。每晚可查驗一名存活玩家的真實身分。' }
+                ]
+            },
+            {
+                name: '夢魘攝夢人', category: '基礎', notices: [],
+                config: { wolf: [['夢魘', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['獵人', 1], ['攝夢人', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['夢魘', '攝夢人', '狼人', '女巫', '預言家', '獵人'] } ],
+                skills: [
+                    { role: '攝夢人', text: '每晚必須選擇自己以外的一名玩家成為夢遊者，夢遊者不知道自己被攝夢，夢遊者免疫夜間傷害。若攝夢人出局，夢遊者將夢遊出局；若攝夢人連續兩晚攝夢同一名玩家，該玩家被夢遊出局。', notes: ['夢遊出局的獵人無法開槍。', '警上自爆的狼人即使被夢遊出局，仍可自爆進入天黑（自爆吞夢）。'] },
+                    { role: '夢魘', text: '不能自刀、自爆，每晚第一個睜眼，可恐懼一名玩家，被恐懼的玩家當晚失去技能；若狼人被恐懼，則當晚狼人無法殺人，不能連續兩晚恐懼同一名玩家。平民不會知道自己是否被恐懼。' }
+                ]
+            },
+            {
+                name: '血月獵魔人', category: '基礎', notices: [],
+                config: { wolf: [['血月使徒', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['獵魔人', 1], ['白痴', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['狼人', '女巫', '預言家', '獵魔人', '白痴'] } ],
+                skills: [
+                    { role: '獵魔人', text: '獵魔人不會被毒殺。第二晚開始，每晚可選擇一名玩家進行狩獵，若被狩獵者為狼人，則該狼人死亡；反之，則獵魔人死亡。' },
+                    { role: '血月使徒', text: '當血月使徒自爆時，會翻牌為血月使徒，並使得當晚所有神職無法發動技能。當血月使徒為最後一狼被放逐出局時，將會進入夜晚再擊殺一名玩家（即血月使徒可存活至下一個天亮），若此時狼人陣營完成屠邊，則狼人獲勝。' }
+                ]
+            },
+            {
+                name: '大灰狼占卜師', category: '進階', notices: [],
+                config: { wolf: [['大灰狼', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['獵人', 1], ['占卜師', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['占卜師', '狼人', '大灰狼', '女巫', '預言家', '獵人'] } ],
+                skills: [
+                    { role: '占卜師', text: '整場遊戲一次機會，選擇一個號碼進行標記，標記後，狼人只能從被標記的號碼及其相鄰兩個號碼中進行擊殺。' },
+                    { role: '大灰狼', text: '首夜與狼人一同睜眼確認身分後將直接閉眼，不再與狼人見面，當其他狼人死亡後會繼承刀權。第二晚開始後有一次機會，可以選擇發動技能擊殺一名玩家，確認選擇發動技能後無法空刀。', notes: ['大灰狼的技能受占卜師技能影響，且要選擇發動技能後，才會看到占卜師的標記號碼'] }
+                ]
+            },
+            {
+                name: '尋香識命', category: '進階', notices: [],
+                config: { wolf: [['尋香魅影', 1], ['狼人', 3]], god: [['覺醒預言家', 1], ['女巫', 1], ['獵人', 1], ['守衛', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['守衛', '狼人', '尋香魅影（看一個隊友並綁定兩人）', '女巫', '覺醒預言家', '獵人'] },
+                    { label: '次夜', steps: ['尋香魅影', '守衛', '狼人', '女巫', '覺醒預言家', '獵人'] }
+                ],
+                skills: [
+                    { role: '覺醒預言家', text: '每晚可選擇查驗存活的兩名玩家之中是否有狼人。', notes: ['覺醒預言家可重複查驗同一名玩家，也可查驗自己。'] },
+                    { role: '尋香魅影', text: '不能自爆，不與狼隊見面，首夜隨機得知一名狼人的號碼，狼人看不到尋香魅影，當其他狼人死亡後會繼承刀權。每晚可選擇兩名玩家綁定，被綁定的玩家不知道自己被綁定。到下一晚前，當被綁定的一方出局時，另一方跟隨出局。不能連續兩晚綁定兩名完全相同的玩家，技能生效後失去技能。', notes: ['跟隨出局的獵人無法開槍。'] }
+                ]
+            },
+            {
+                name: '時波之亂', category: '進階', notices: [],
+                config: { wolf: [['寂夜導師', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['守衛', 1], ['白晝學者', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['寂夜導師', '白晝學者', '守衛', '狼人', '女巫', '預言家'] } ],
+                skills: [
+                    { role: '白晝學者', text: '第二晚開始，獲得技能增幅與削弱，被增幅的玩家可在當晚額外發動一次技能；被削弱的玩家在當晚無法發動技能。同一晚只能使用一個技能，且整場遊戲只能各使用一次。', notes: [
+                        '白晝學者不會被增幅或削弱。',
+                        '女巫被增幅，只會額外獲得毒藥，不會額外獲得解藥；女巫被削弱，可以使用解藥，不能使用毒藥。',
+                        '守衛被增幅，額外的守護可無視不能連續守護的限制。',
+                        '平民不會知道自己被增幅、削弱。',
+                        '狼人被增幅，狼隊可額外擊殺一名玩家；狼人被削弱，狼人階段無法殺人。',
+                        '若白晝學者與寂夜導師的技能對象為同一名好人，則技能失效且該玩家死亡；若白晝學者與寂夜導師的技能對象皆為狼人，則技能失效且寂夜導師死亡。',
+                        '白晝學者增幅或削弱寂夜導師，無事發生，狼人也不會因此死亡。'
+                    ] },
+                    { role: '寂夜導師', text: '不能自爆，不與狼人見面，但狼人知道寂夜導師的號碼，當其他狼人死亡後會繼承刀權。第二晚開始，獲得技能增幅與削弱，被增幅的玩家可在當晚額外發動一次技能；被削弱的玩家在當晚無法發動技能。同一晚只能使用一個技能，且整場遊戲只能各使用一次。', notes: [
+                        '寂夜導師不會被增幅或削弱。',
+                        '女巫被增幅，只會額外獲得毒藥，不會額外獲得解藥；女巫被削弱，可以使用解藥，不能使用毒藥。',
+                        '守衛被增幅，額外的守護可無視不能連續守護的限制。',
+                        '平民不會知道自己被增幅、削弱。',
+                        '狼人被增幅，狼隊可額外擊殺一名玩家；狼人被削弱，狼人階段無法殺人。',
+                        '若寂夜導師與白晝學者的技能對象為同一名好人，則技能失效且該玩家死亡；若寂夜導師與白晝學者的技能對象皆為狼人，則技能失效且寂夜導師死亡。',
+                        '寂夜導師增幅或削弱白晝學者，無事發生。'
+                    ] }
+                ]
+            },
+            {
+                name: '奇蹟商人覺醒狼王', category: '進階', notices: [],
+                config: { wolf: [['覺醒狼王', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['攝夢人', 1], ['奇蹟商人', 1]], villager: [['平民', 4]] },
+                night: [ { label: '', steps: ['攝夢人', '狼人+覺醒狼王分槍', '女巫', '預言家', '奇蹟商人', '幸運兒', '第一把槍開槍狀態', '第二把槍開槍狀態'] } ],
+                skills: [
+                    { role: '奇蹟商人', text: '整場遊戲一次機會，可以選擇除自己外的一名玩家成為幸運兒並進行交易，使其獲得技能【查驗】、【毒藥】、【守護】其中之一，交易獲得的技能當晚即可使用，三個技能皆只能使用一次。若選擇的幸運兒為狼人，該狼人不會知道自己成為幸運兒，也不會獲得技能，且奇蹟商人死亡。', notes: ['幸運兒將在幸運兒階段使用技能，可保留技能不使用。', '若預言家獲得查驗技能，預言家不得查驗同一名玩家。', '若守衛獲得守護技能，仍不可連續守護同一名玩家。', '進入夢遊的奇蹟商人不會死於交易失敗。'] },
+                    { role: '覺醒狼王', text: '覺醒狼王擁有兩次狼王爪技能，可以選擇在夜晚將一次狼王爪技能親傳給任意存活狼隊友。擁有狼王爪的狼人被狼人擊殺出局或被放逐出局時，可以使用狼王爪技能，選擇一名玩家，使其一併出局。', notes: ['覺醒狼王不能親傳給同一個人。', '擁有狼王爪技能的狼人為場上最後一狼出局時無法開槍。', '擁有狼王爪技能的狼人自爆、被毒、被夢遊出局皆無法開槍。', '覺醒狼王擁有兩個狼王爪技能且不是最後一個被放逐的狼人，可以發動技能帶走兩名玩家。'] }
+                ]
+            },
+            {
+                name: '狼兄狼弟黑市商人', category: '進階', notices: [],
+                config: { wolf: [['狼兄', 1], ['狼弟', 1], ['狼人', 2]], god: [['預言家', 1], ['女巫', 1], ['守衛', 1], ['黑市商人', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['守衛', '狼兄+狼弟', '狼兄+狼人', '女巫', '預言家', '黑市商人', '幸運兒'] },
+                    { label: '次夜', steps: ['守衛', '狼弟', '狼兄+狼人', '女巫', '預言家', '黑市商人', '幸運兒'] }
+                ],
+                skills: [
+                    { role: '黑市商人', text: '整場遊戲一次機會，可以選擇除自己外的一名玩家成為幸運兒並進行交易，使其獲得技能【查驗】、【毒藥】、【獵槍】其中之一，交易獲得的技能可於隔日天亮後使用，三個技能皆只能使用一次。若選擇的幸運兒為狼人，該狼人不會知道自己成為幸運兒，也不會獲得技能，且黑市商人死亡。', notes: ['幸運兒將在幸運兒階段使用技能，可保留技能不使用。', '若預言家獲得查驗技能，預言家不得查驗同一名玩家。'] },
+                    { role: '狼兄', text: '不能自刀、自爆，首夜與狼弟一同睜眼確認身分，之後與狼人共同睜眼討論擊殺對象。狼兄死亡後，狼弟進入發狂狀態。', notes: ['自訂規則下：狼兄可以自爆'] },
+                    { role: '狼弟', text: '開局不與狼人見面，首夜與狼兄一同睜眼確認身分。狼兄死亡當晚，狼弟進入發狂狀態，可在狼弟階段擊殺一名玩家。發狂後的下一晚，狼弟可與狼人一同於狼人階段睜眼討論擊殺對象。狼弟發狂前被預言家查驗顯示為好人，發狂後則顯示為狼人。', notes: ['發狂當夜，狼弟不入狼隊。', '女巫的解藥無法看到狼弟覺醒刀的刀型。', '自訂規則下：狼弟的覺醒刀可無視所有保護技能，即為無敵刀。'] }
+                ]
+            },
+            {
+                name: '迷霧鴉影', category: '進階', notices: [],
+                config: { wolf: [['狼鴉之爪', 1], ['狼人', 3]], god: [['預言家', 1], ['白痴', 1], ['攝夢人', 1], ['煉金魔女', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['煉金魔女未明之霧', '攝夢人', '狼鴉之爪帶刀狀態', '狼人', '狼鴉之爪無敵刀', '煉金魔女刀口', '預言家', '白痴'] },
+                    { label: '次夜', steps: ['煉金魔女未明之霧', '攝夢人', '狼鴉之爪帶刀狀態', '狼人', '狼鴉之爪無敵刀', '煉金魔女刀口', '預言家'] }
+                ],
+                skills: [
+                    { role: '煉金魔女', text: '擁有一團未明之霧和一條法老之蛇，各可使用一次。在夜間，煉金魔女可使用未明之霧，選擇場上三個不同的玩家，當晚狼人陣營必須從這三個玩家中選擇擊殺目標。煉金魔女擁有法老之蛇時，能在夜晚得知當晚的狼人擊殺目標，並在隔日公布死訊前使用法老之蛇救活該玩家，第一天可自救。當煉金魔女存活且未使用過法老之蛇時，白天的遊戲流程變為先進行發言，後公布死訊。', notes: [
+                        '煉金魔女的法老之蛇只能救活被狼隊擊倒的玩家。',
+                        '在煉金魔女未使用法老之蛇時，自刀的狼人整個白天都不能自爆。',
+                        '當煉金魔女存活且未使用法老之蛇時，天亮時狼人自爆，煉金魔女可以在狼人自爆後選擇使用法老之蛇救活上一個夜晚被狼人選中出局的玩家。',
+                        '在煉金魔女未使用法老之蛇時，被連續兩晚攝夢的狼人在白天自爆可以吞掉夢亡，法老之蛇階段結束、公布死訊後將直接進入黑夜。',
+                        '如果煉金魔女未使用法老之蛇救人，第一夜被刀出局的玩家有遺言，之後被刀出局的玩家沒有遺言。',
+                        '煉金魔女使用未明之霧當晚，狼隊無法空刀。'
+                    ] },
+                    { role: '狼鴉之爪', text: '不能自爆，開局不與狼人見面，但狼人知道狼鴉之爪的號碼。若入夜時，場上狼人數量小於等於2（包括狼鴉之爪），則狼鴉之爪進入狼隊，與狼人一同睜眼討論擊殺對象，此後，狼鴉之爪有一次機會可單獨睜眼擊殺一名玩家，且無視所有保護技能。', notes: ['狼鴉之爪的無敵刀不受未明之霧的影響。', '狼鴉之爪的無敵刀可不在入狼隊當晚使用。'] }
+                ]
+            },
+            {
+                name: '永序之輪', category: '進階', notices: [],
+                config: { wolf: [['蝕時狼妃', 1], ['狼人', 3]], god: [['預言家', 1], ['女巫', 1], ['守衛', 1], ['定序王子', 1]], villager: [['平民', 4]] },
+                night: [
+                    { label: '首夜', steps: ['蝕時狼妃', '守衛', '狼人', '女巫', '預言家', '定序王子'] },
+                    { label: '次夜', steps: ['蝕時狼妃', '守衛', '狼人', '女巫', '預言家'] }
+                ],
+                skills: [
+                    { role: '蝕時狼妃', text: '每晚第一個睜眼，可以選擇封鎖場上任意一名玩家，當晚場上好人陣營玩家對被封鎖玩家使用的所有技能（女巫解藥除外），均視為對自身使用。蝕時狼妃在技能生效的下一晚後永久失去技能。', notes: ['守衛因蝕時狼妃技能而產生的連續自守是允許的，守衛的限制仍為不能連續選擇同一名玩家。', '蝕時狼妃封鎖目標後成功反彈好人技能中的任意一個，就算技能生效。', '是否同守同救取決於守衛實際守護到的目標與女巫解救對象是否一致。', '蝕時狼妃可以不發動技能。'] },
+                    { role: '定序王子', text: '整場遊戲一次機會，於白天的第一次放逐投票結束時，定序王子可以翻牌發動技能，逆轉時空回到本次投票前並重新投票。重新投票前，定序王子可以獲得額外一次的發言時間。', notes: ['白天第一次放逐投票平票，王子沒有發動技能，第二輪投票後定序王子不可以發動技能。', '定序王子發動技能後的發言階段，狼人不可以自爆。', '如果定序王子是警長，發動技能後不需要移交警徽。'] }
+                ]
+            }
+        ];
+
+        /* ---------- 陣營樣式 ---------- */
+        var CAMPS = [
+            { key: 'wolf', label: '狼人陣營', short: '狼人陣營', full: '狼人陣營', badge: 'bg-rose-950 text-rose-400', chip: 'border-rose-900/70 text-rose-300 hover:border-rose-500 hover:text-white' },
+            { key: 'god', label: '好人陣營 · 神職', short: '神職陣營', full: '好人陣營神職', badge: 'bg-blue-950 text-blue-400', chip: 'border-blue-900/70 text-blue-300 hover:border-blue-500 hover:text-white' },
+            { key: 'villager', label: '好人陣營 · 平民', short: '平民陣營', full: '好人陣營平民', badge: 'bg-slate-800 text-slate-400', chip: 'border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white' },
+            { key: 'variable', label: '變動陣營', short: '變動陣營', full: '變動陣營', badge: 'bg-amber-950 text-amber-400', chip: 'border-amber-900/70 text-amber-300 hover:border-amber-500 hover:text-white' }
+        ];
+        function campOf(key) { for (var i = 0; i < CAMPS.length; i++) { if (CAMPS[i].key === key) return CAMPS[i]; } return CAMPS[2]; }
+
+        var CATEGORY_BADGE = {
+            '基礎': 'bg-emerald-900/50 border border-emerald-600/40 text-emerald-400',
+            '進階': 'bg-amber-900/50 border border-amber-600/40 text-amber-400',
+            '娛樂': 'bg-sky-900/50 border border-sky-600/40 text-sky-400',
+            '三方': 'bg-violet-900/50 border border-violet-600/40 text-violet-400',
+            '其他': 'bg-slate-800 text-slate-300'
+        };
+
+        /* ---------- 工具 ---------- */
+        function esc(s) {
+            if (s === null || s === undefined) return '';
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function noteText(n) { return (n && typeof n === 'object') ? (n.t || '') + ' ' + (n.sub || []).join(' ') : (n || ''); }
+        function boardPlayers(b) {
+            var total = 0, c = b.config || {};
+            ['wolf', 'god', 'villager', 'variable'].forEach(function (k) { (c[k] || []).forEach(function (r) { total += (r[1] || 1); }); });
+            return total;
+        }
+
+        /* ---------- 版型特殊判定（原文取自各版型技能說明之補充條目，依受影響角色歸檔） ---------- */
+        var SPECIAL_RULES = [
+            { board: '機械狼通靈師', role: '女巫', text: '若學到狼人的機械狼發動技能當晚，女巫仍有解藥，女巫只會看到狼人擊殺的玩家，不會看到機械狼額外的刀型。' },
+            { board: '夢魘攝夢人', role: '獵人', text: '夢遊出局的獵人無法開槍。' },
+            { board: '夢魘攝夢人', role: '狼人', text: '警上自爆的狼人即使被夢遊出局，仍可自爆進入天黑（自爆吞夢）。' },
+            { board: '尋香識命', role: '獵人', text: '跟隨出局的獵人無法開槍。' },
+            { board: '時波之亂', role: '女巫', text: '女巫被增幅，只會額外獲得毒藥，不會額外獲得解藥；女巫被削弱，可以使用解藥，不能使用毒藥。' },
+            { board: '時波之亂', role: '守衛', text: '守衛被增幅，額外的守護可無視不能連續守護的限制。' },
+            { board: '時波之亂', role: '平民', text: '平民不會知道自己被增幅、削弱。' },
+            { board: '時波之亂', role: '狼人', text: '狼人被增幅，狼隊可額外擊殺一名玩家；狼人被削弱，狼人階段無法殺人。' },
+            { board: '奇蹟商人覺醒狼王', role: '預言家', text: '若預言家獲得查驗技能，預言家不得查驗同一名玩家。' },
+            { board: '狼兄狼弟黑市商人', role: '預言家', text: '若預言家獲得查驗技能，預言家不得查驗同一名玩家。' },
+            { board: '狼兄狼弟黑市商人', role: '女巫', text: '女巫的解藥無法看到狼弟覺醒刀的刀型。' },
+            { board: '迷霧鴉影', role: '狼人', text: '在煉金魔女未使用法老之蛇時，自刀的狼人整個白天都不能自爆。' },
+            { board: '迷霧鴉影', role: '狼人', text: '在煉金魔女未使用法老之蛇時，被連續兩晚攝夢的狼人在白天自爆可以吞掉夢亡，法老之蛇階段結束、公布死訊後將直接進入黑夜。' },
+            { board: '迷霧鴉影', role: '狼人', text: '煉金魔女使用未明之霧當晚，狼隊無法空刀。' },
+            { board: '永序之輪', role: '守衛', text: '守衛因蝕時狼妃技能而產生的連續自守是允許的，守衛的限制仍為不能連續選擇同一名玩家。' },
+            { board: '永序之輪', role: '守衛', text: '是否同守同救取決於守衛實際守護到的目標與女巫解救對象是否一致。' },
+            { board: '永序之輪', role: '女巫', text: '是否同守同救取決於守衛實際守護到的目標與女巫解救對象是否一致。' },
+            { board: '永序之輪', role: '狼人', text: '定序王子發動技能後的發言階段，狼人不可以自爆。' }
+        ];
+
+        /* ---------- 由版型推導角色資料（單一資料流） ---------- */
+        var ROLE_ALIASES = { '血月使徒': ['血月使者'] };   // 角色別稱（僅顯示於角色介紹與搜尋）
+        var rolesData = [];      // [{name, camp, text, notes, boards:[boardIdx], aliases}]
+        var roleIndex = {};      // name -> idx
+
+        function buildRoles() {
+            rolesData = []; roleIndex = {};
+            boardsData.forEach(function (b, bi) {
+                var c = b.config || {};
+                CAMPS.forEach(function (camp) {
+                    (c[camp.key] || []).forEach(function (r) {
+                        var name = r[0];
+                        if (!name) return;
+                        if (roleIndex[name] === undefined) {
+                            roleIndex[name] = rolesData.length;
+                            rolesData.push({ name: name, camp: camp.key, text: '', notes: [], boards: [], source: -1, aliases: ROLE_ALIASES[name] || [], special: [] });
+                        }
+                        var role = rolesData[roleIndex[name]];
+                        if (role.boards.indexOf(bi) === -1) role.boards.push(bi);
+                    });
+                });
+            });
+            boardsData.forEach(function (b, bi) {
+                (b.skills || []).forEach(function (s) {
+                    var idx = roleIndex[s.role];
+                    if (idx === undefined) return;
+                    var role = rolesData[idx];
+                    if (!role.text) { role.text = s.text || ''; role.notes = s.notes || []; role.source = bi; }
+                });
+            });
+            // 版型特殊判定：僅掛在「該版型配置中有此角色」的情況，依版型順序排列
+            var boardIdxByName = {};
+            boardsData.forEach(function (b, bi) { boardIdxByName[b.name] = bi; });
+            SPECIAL_RULES.forEach(function (s) {
+                var bi = boardIdxByName[s.board], idx = roleIndex[s.role];
+                if (bi === undefined || idx === undefined || !s.text) return;
+                if (!boardHasRole(boardsData[bi], s.role)) return;
+                rolesData[idx].special.push({ board: bi, text: s.text });
+            });
+            rolesData.forEach(function (r) { r.special.sort(function (a, b) { return a.board - b.board; }); });
+            var order = { wolf: 0, god: 1, villager: 2, variable: 3 };
+            rolesData.forEach(function (r, i) { r._i = i; });
+            rolesData.sort(function (a, b) { return (order[a.camp] - order[b.camp]) || (a._i - b._i); });
+            roleIndex = {};
+            rolesData.forEach(function (r, i) { roleIndex[r.name] = i; });
+        }
+
+        /* ---------- 共用狀態 ---------- */
+        var boardState = { cat: '全部', role: null };
+        var roleState = { camp: 'all' };
+
+        function roleChip(name, count, opts) {
+            var idx = roleIndex[name];
+            var label = esc(name) + (count > 1 ? ' × ' + count : '');
+            if (idx === undefined) return '<span class="text-slate-300">' + label + '</span>';
+            var highlight = (boardState.role === name) ? ' ring-1 ring-rose-500 text-white' : '';
+            return '<button type="button" onclick="event.stopPropagation();openRole(' + idx + ')" class="role-link inline-flex items-center px-2 py-0.5 rounded-md border bg-slate-950/40 text-xs sm:text-sm transition ' + campOf(rolesData[idx].camp).chip + highlight + '">' + label + '</button>';
+        }
+
+        function configRows(b, full) {
+            var c = b.config || {}, html = '';
+            CAMPS.forEach(function (camp) {
+                var list = c[camp.key] || [];
+                if (!list.length) return;
+                html += '<div class="flex items-start gap-3">';
+                html += '<span class="px-2 py-1 rounded ' + camp.badge + ' text-xs font-bold shrink-0">' + (full ? camp.full : camp.short) + '</span>';
+                html += '<div class="flex flex-wrap gap-1.5 pt-0.5">' + list.map(function (r) { return roleChip(r[0], r[1]); }).join('') + '</div>';
+                html += '</div>';
+            });
+            return html;
+        }
+
+        function boardSearchText(b) {
+            var parts = [b.name, b.category];
+            var c = b.config || {};
+            ['wolf', 'god', 'villager', 'variable'].forEach(function (k) { (c[k] || []).forEach(function (r) { parts.push(r[0]); parts = parts.concat(ROLE_ALIASES[r[0]] || []); }); });
+            (b.night || []).forEach(function (n) { parts.push(n.label); parts = parts.concat(n.steps || []); });
+            (b.skills || []).forEach(function (s) { parts.push(s.role, s.text); (s.notes || []).forEach(function (n) { parts.push(noteText(n)); }); });
+            return parts.join(' ').toLowerCase();
+        }
+        function boardHasRole(b, name) {
+            var c = b.config || {};
+            return ['wolf', 'god', 'villager', 'variable'].some(function (k) { return (c[k] || []).some(function (r) { return r[0] === name; }); });
+        }
+
+        /* ---------- 版型介紹 ---------- */
+        function renderBoards() {
+            var input = document.getElementById('board-search');
+            var q = (input ? input.value : '').toLowerCase().trim();
+            var clearBtn = document.getElementById('board-search-clear');
+            if (clearBtn) clearBtn.classList.toggle('hidden', q === '');
+
+            // 分類計數（受搜尋與角色篩選影響）
+            var base = boardsData.map(function (b, i) { return i; }).filter(function (i) {
+                var b = boardsData[i];
+                if (boardState.role && !boardHasRole(b, boardState.role)) return false;
+                if (q && boardSearchText(b).indexOf(q) === -1) return false;
+                return true;
+            });
+            var counts = {};
+            BOARD_CATEGORIES.forEach(function (c) { counts[c] = 0; });
+            base.forEach(function (i) { counts['全部']++; if (counts[boardsData[i].category] !== undefined) counts[boardsData[i].category]++; else counts['其他']++; });
+
+            var bar = document.getElementById('board-cat-bar');
+            if (bar) {
+                bar.innerHTML = BOARD_CATEGORIES.map(function (c) {
+                    var active = boardState.cat === c;
+                    var cls = active ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800';
+                    var numCls = active ? 'bg-rose-700/80 text-rose-100' : 'bg-slate-800 text-slate-500';
+                    return '<button type="button" onclick="setBoardCategory(\'' + c + '\')" class="px-3.5 py-1.5 rounded-xl font-medium transition shrink-0 flex items-center gap-1.5 ' + cls + '">' + c + '<span class="text-[10px] px-1.5 rounded-md ' + numCls + '">' + counts[c] + '</span></button>';
+                }).join('');
+            }
+
+            var shown = base.filter(function (i) {
+                var cat = boardsData[i].category;
+                if (BOARD_CATEGORIES.indexOf(cat) === -1) cat = '其他';
+                return boardState.cat === '全部' || cat === boardState.cat;
+            });
+
+            var rf = document.getElementById('board-role-filter');
+            if (rf) {
+                rf.innerHTML = boardState.role ? '<button type="button" onclick="setBoardRole(null)" class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg bg-rose-950/70 border border-rose-700/50 text-rose-200 hover:bg-rose-900 transition">角色：' + esc(boardState.role) + '<span class="text-rose-400">✕</span></button>' : '';
+            }
+            var countEl = document.getElementById('board-count');
+            if (countEl) countEl.textContent = '共 ' + shown.length + ' 個版型';
+
+            var container = document.getElementById('boards-container');
+            var empty = document.getElementById('boards-empty');
+            if (!container) return;
+            if (!shown.length) {
+                container.innerHTML = '';
+                if (empty) {
+                    empty.classList.remove('hidden');
+                    var noFilter = !q && !boardState.role;
+                    document.getElementById('boards-empty-title').textContent = noFilter ? '「' + boardState.cat + '」分類目前尚無版型' : '找不到符合條件的版型';
+                    document.getElementById('boards-empty-sub').textContent = noFilter ? '版型整理中，敬請期待' : '請嘗試輸入其他關鍵字、移除角色篩選或切換上方分類';
+                }
+                return;
+            }
+            if (empty) empty.classList.add('hidden');
+
+            container.innerHTML = shown.map(function (i) {
+                var b = boardsData[i];
+                var badge = CATEGORY_BADGE[b.category] || CATEGORY_BADGE['其他'];
+                return '<div onclick="openBoard(' + i + ')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-6 hover:border-slate-600 transition flex flex-col justify-between">'
+                    + '<div>'
+                    + '<div class="flex items-center justify-between gap-3 mb-4">'
+                    + '<h3 class="text-xl font-bold text-white flex items-center gap-2 min-w-0"><span class="w-2 h-5 bg-rose-600 rounded-full shrink-0"></span><span class="truncate">' + esc(b.name || '未命名版型') + '</span></h3>'
+                    + '<span class="px-2.5 py-1 rounded-lg ' + badge + ' text-xs font-semibold shrink-0">' + esc(b.category || '其他') + '</span>'
+                    + '</div>'
+                    + '<div class="space-y-3">' + configRows(b) + '</div>'
+                    + '</div>'
+                    + '<span class="text-xs font-semibold text-rose-400 mt-5">查看夜間順序與技能說明 →</span>'
+                    + '</div>';
+            }).join('');
+        }
+        function setBoardCategory(c) { boardState.cat = c; renderBoards(); }
+        function setBoardRole(name) { boardState.role = name; renderBoards(); }
+        function clearBoardSearch() { var el = document.getElementById('board-search'); if (el) { el.value = ''; el.focus(); } renderBoards(); }
+
+        /* ---------- 角色介紹 ---------- */
+        function roleSearchText(r) {
+            var parts = [r.name, campOf(r.camp).label, r.text].concat(r.aliases || []).concat((r.special || []).map(function (s) { return s.text; }));
+            (r.notes || []).forEach(function (n) { parts.push(noteText(n)); });
+            r.boards.forEach(function (bi) { parts.push(boardsData[bi].name); });
+            return parts.join(' ').toLowerCase();
+        }
+        function renderRoles() {
+            var input = document.getElementById('role-search');
+            var q = (input ? input.value : '').toLowerCase().trim();
+            var clearBtn = document.getElementById('role-search-clear');
+            if (clearBtn) clearBtn.classList.toggle('hidden', q === '');
+
+            var base = rolesData.filter(function (r) { return !q || roleSearchText(r).indexOf(q) !== -1; });
+            var counts = { all: base.length };
+            CAMPS.forEach(function (c) { counts[c.key] = 0; });
+            base.forEach(function (r) { counts[r.camp]++; });
+
+            var bar = document.getElementById('role-camp-bar');
+            if (bar) {
+                var opts = [{ key: 'all', label: '全部' }].concat(CAMPS.map(function (c) { return { key: c.key, label: c.label }; }));
+                bar.innerHTML = opts.map(function (o) {
+                    var active = roleState.camp === o.key;
+                    var cls = active ? 'bg-rose-600 text-white shadow-sm' : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800';
+                    var numCls = active ? 'bg-rose-700/80 text-rose-100' : 'bg-slate-800 text-slate-500';
+                    return '<button type="button" onclick="setRoleCamp(\'' + o.key + '\')" class="px-3.5 py-1.5 rounded-xl font-medium transition shrink-0 flex items-center gap-1.5 ' + cls + '">' + o.label + '<span class="text-[10px] px-1.5 rounded-md ' + numCls + '">' + counts[o.key] + '</span></button>';
+                }).join('');
+            }
+
+            var shown = base.filter(function (r) { return roleState.camp === 'all' || r.camp === roleState.camp; });
+            var countEl = document.getElementById('role-count');
+            if (countEl) countEl.textContent = '共 ' + shown.length + ' 個角色';
+
+            var container = document.getElementById('roles-container');
+            var empty = document.getElementById('roles-empty');
+            if (!container) return;
+            if (empty) empty.classList.toggle('hidden', shown.length > 0);
+
+            container.innerHTML = shown.map(function (r) {
+                var idx = roleIndex[r.name];
+                var camp = campOf(r.camp);
+                var maxChips = 4;
+                var chips = r.boards.slice(0, maxChips).map(function (bi) {
+                    return '<button type="button" onclick="event.stopPropagation();openBoard(' + bi + ')" class="text-xs px-2 py-0.5 rounded-md bg-slate-950/60 border border-slate-800 text-slate-300 hover:border-rose-500 hover:text-white transition">' + esc(boardsData[bi].name) + '</button>';
+                }).join('');
+                if (r.boards.length > maxChips) chips += '<span class="text-xs px-1.5 py-0.5 text-slate-500">+' + (r.boards.length - maxChips) + '</span>';
+                return '<div onclick="openRole(' + idx + ')" class="cursor-pointer rounded-2xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-600 transition flex flex-col gap-3">'
+                    + '<div class="flex items-center justify-between gap-3">'
+                    + '<h3 class="text-lg font-bold text-white flex items-center gap-2 min-w-0"><span class="w-2 h-5 bg-rose-600 rounded-full shrink-0"></span><span class="truncate">' + esc(r.name) + '</span></h3>'
+                    + '<span class="px-2 py-1 rounded ' + camp.badge + ' text-xs font-bold shrink-0">' + camp.label + '</span>'
+                    + '</div>'
+                    + '<p class="text-sm text-slate-300 leading-relaxed line-clamp-3">' + (r.text ? esc(r.text) : '<span class="text-slate-500">尚無技能說明</span>') + '</p>'
+                    + '<div class="flex flex-wrap items-center gap-1.5 pt-1 border-t border-slate-800/80"><span class="text-xs text-slate-500 mr-1 pt-2">使用版型 ' + r.boards.length + '</span><div class="flex flex-wrap gap-1.5 pt-2">' + chips + '</div></div>'
+                    + '</div>';
+            }).join('');
+        }
+        function setRoleCamp(k) { roleState.camp = k; renderRoles(); }
+        function clearRoleSearch() { var el = document.getElementById('role-search'); if (el) { el.value = ''; el.focus(); } renderRoles(); }
+
+        /* ---------- 共用詳情面板（含返回堆疊） ---------- */
+        var detailStack = [];
+        function openBoard(i) { if (!boardsData[i]) return; pushDetail({ type: 'board', id: i }); }
+        function openRole(i) { if (!rolesData[i]) return; pushDetail({ type: 'role', id: i }); }
+        function pushDetail(item) {
+            var top = detailStack[detailStack.length - 1];
+            if (top && top.type === item.type && top.id === item.id) return;
+            detailStack.push(item); renderDetail();
+        }
+        function detailBack() { if (detailStack.length > 1) { detailStack.pop(); renderDetail(); } }
+        function closeDetail() {
+            detailStack = [];
+            var m = document.getElementById('detail-modal');
+            if (m) { m.classList.add('hidden'); m.classList.remove('flex'); }
+            document.body.style.overflow = '';
+        }
+
+        function notesHtml(notes) {
+            if (!notes || !notes.length) return '';
+            return '<ul class="mt-2 space-y-1.5 pl-4 list-disc marker:text-slate-600">' + notes.map(function (n) {
+                if (n && typeof n === 'object') {
+                    return '<li>' + esc(n.t) + (n.sub && n.sub.length ? '<ul class="mt-1.5 space-y-1 pl-4 list-[square] marker:text-slate-600">' + n.sub.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') + '</li>';
+                }
+                return '<li>' + esc(n) + '</li>';
+            }).join('') + '</ul>';
+        }
+        function sectionTitle(t) { return '<h3 class="text-sm font-bold text-slate-400 tracking-wide flex items-center gap-2"><span class="w-1.5 h-4 bg-rose-600 rounded-full"></span>' + t + '</h3>'; }
+
+        function renderBoardDetail(i) {
+            var b = boardsData[i];
+            var badge = CATEGORY_BADGE[b.category] || CATEGORY_BADGE['其他'];
+            var html = '<div class="space-y-2"><div class="flex flex-wrap items-center gap-2"><span class="px-2.5 py-1 rounded-lg ' + badge + ' text-xs font-semibold">' + esc(b.category || '其他') + '</span><span class="text-xs text-slate-500">' + boardPlayers(b) + ' 人局</span></div>'
+                + '<h2 class="text-2xl sm:text-3xl font-extrabold text-white">' + esc(b.name) + '</h2></div>';
+
+            html += '<section class="space-y-3">' + sectionTitle('配置') + '<div class="space-y-3 rounded-xl bg-slate-950/60 border border-slate-800 p-4">' + configRows(b, true) + '</div></section>';
+
+            if (b.night && b.night.length) {
+                html += '<section class="space-y-3">' + sectionTitle('夜間順序') + '<div class="space-y-3 rounded-xl bg-slate-950/60 border border-slate-800 p-4">';
+                b.night.forEach(function (n) {
+                    html += '<div class="flex flex-col sm:flex-row sm:items-start gap-2">';
+                    if (n.label) html += '<span class="text-xs font-bold text-slate-400 shrink-0 w-10 pt-1">' + esc(n.label) + '</span>';
+                    html += '<div class="flex flex-wrap items-center gap-1 text-sm text-slate-200">' + (n.steps || []).map(function (s, k) {
+                        return (k ? '<span class="text-slate-600 px-0.5">→</span>' : '') + '<span class="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800">' + esc(s) + '</span>';
+                    }).join('') + '</div></div>';
+                });
+                html += '</div></section>';
+            }
+
+            html += '<section class="space-y-3">' + sectionTitle('注意事項') + '<div class="rounded-xl bg-slate-950/60 border border-slate-800 p-4 text-sm text-slate-300 leading-relaxed">'
+                + (b.notices && b.notices.length ? notesHtml(b.notices).replace('mt-2 ', '') : '<p class="text-slate-500">暫無注意事項</p>')
+                + '</div></section>';
+            html += '<p class="text-xs text-slate-500">點擊配置中的角色即可查看技能說明。</p>';
+            return html;
+        }
+
+        function renderRoleDetail(i) {
+            var r = rolesData[i];
+            var camp = campOf(r.camp);
+            var html = '<div class="space-y-2"><span class="inline-block px-2 py-1 rounded ' + camp.badge + ' text-xs font-bold">' + camp.label + '</span>'
+                + '<h2 class="text-2xl sm:text-3xl font-extrabold text-white">' + esc(r.name) + '</h2>'
+                + (r.aliases && r.aliases.length ? '<p class="text-xs text-slate-500">又稱「' + r.aliases.map(esc).join('」、「') + '」</p>' : '')
+                + '</div>';
+            html += '<section class="space-y-3">' + sectionTitle('技能說明') + '<div class="rounded-xl bg-slate-950/60 border border-slate-800 p-4 text-sm sm:text-base text-slate-300 leading-relaxed">'
+                + (r.text ? '<p>' + esc(r.text) + '</p>' + notesHtml(r.notes) : '<p class="text-slate-500">尚無技能說明</p>')
+                + (r.special && r.special.length ? '<div class="mt-3 pt-3 border-t border-slate-800 space-y-2">' + r.special.map(function (s) {
+                    return '<div class="flex items-start gap-2"><button type="button" onclick="openBoard(' + s.board + ')" class="shrink-0 mt-0.5 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-slate-300 hover:border-rose-500 hover:text-white transition">' + esc(boardsData[s.board].name) + '</button><p>' + esc(s.text) + '</p></div>';
+                }).join('') + '</div>' : '')
+                + '</div></section>';
+            html += '<section class="space-y-3"><div class="flex items-center justify-between gap-2">' + sectionTitle('使用此角色的版型（' + r.boards.length + '）')
+                + '<button type="button" onclick="filterBoardsByRole(' + i + ')" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition shrink-0">在版型介紹中篩選 →</button></div>'
+                + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + r.boards.map(function (bi) {
+                    var b = boardsData[bi];
+                    var badge = CATEGORY_BADGE[b.category] || CATEGORY_BADGE['其他'];
+                    return '<button type="button" onclick="openBoard(' + bi + ')" class="flex items-center justify-between gap-2 text-left rounded-xl bg-slate-950/60 border border-slate-800 px-3.5 py-2.5 hover:border-rose-500 transition"><span class="text-sm font-semibold text-white truncate">' + esc(b.name) + '</span><span class="px-2 py-0.5 rounded-md ' + badge + ' text-[11px] font-semibold shrink-0">' + esc(b.category) + '</span></button>';
+                }).join('') + '</div></section>';
+            return html;
+        }
+
+        function renderDetail() {
+            var m = document.getElementById('detail-modal');
+            var body = document.getElementById('detail-body');
+            var top = detailStack[detailStack.length - 1];
+            if (!m || !body || !top) { closeDetail(); return; }
+            body.innerHTML = top.type === 'board' ? renderBoardDetail(top.id) : renderRoleDetail(top.id);
+            document.getElementById('detail-kind').textContent = top.type === 'board' ? '版型詳情' : '角色介紹';
+            document.getElementById('detail-back').classList.toggle('invisible', detailStack.length < 2);
+            m.classList.remove('hidden'); m.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            if (body.parentElement) body.parentElement.scrollTop = 0;
+        }
+
+        function filterBoardsByRole(i) {
+            var r = rolesData[i];
+            if (!r) return;
+            closeDetail();
+            boardState.role = r.name; boardState.cat = '全部';
+            var el = document.getElementById('board-search'); if (el) el.value = '';
+            renderBoards();
+            switchTab('boards');
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                var m = document.getElementById('detail-modal');
+                if (m && !m.classList.contains('hidden')) closeDetail();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            buildRoles();
+            renderBoards();
+            renderRoles();
         });
     </script>
 </body>
